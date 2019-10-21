@@ -31,14 +31,29 @@ class CreateEntry extends Component {
         })
     }
 
+    onTagClose = (e) => {
+        // e.preventDefault();
+        // let personName = e.target.parentNode.dataset.name
+        let personName = e.target.dataset.name
+        console.log(personName)
+        const newPeopleArr = [...this.state.peopleArr].filter(person => person !== personName)
+        console.log(newPeopleArr)
+        this.setState({
+            peopleArr: newPeopleArr
+        })
+        
+    }
+
     render() { 
         console.log(this.state)
 
         let peopleTags = this.state.peopleArr.map( (person, i) => {
-            return(<div className="chip" key={i}>
+            return(<div className="chip" data-name={person} onClick={this.onTagClose} key={i}>
                 {person}
+                {/* <i className="close material-icons" onClick={this.onTagClose} >close</i> */}
             </div>)
         })
+        console.log(peopleTags);
 
         return (
             <div className="container orange lighten-2 ">

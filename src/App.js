@@ -9,19 +9,27 @@ import AllDreams from './components/AllDreams/AllDreams.js';
 
 class App extends Component {
     state = {
-        text:'0'
+        text: '20'
     }
 
     componentDidMount() {
 
-    const rootRef = firebase.database().ref().child('Hi');
-    rootRef.on('value', snap => {
-        console.log(snap)
-        this.setState({
-            text: snap.val()
+        const rootRef = firebase.database().ref().child('Hi');
+        rootRef.on('value', snap => {
+            console.log(snap.val())
+            this.setState({
+                text: snap.val()
+            })
         })
-    })
-}
+        this.writeUserData('joe')
+
+    }
+
+    writeUserData(name) {
+        firebase.database().ref('users/').set({
+            username: name
+        });
+    }
 
     render() {
         return (

@@ -1,6 +1,4 @@
-// require('dotenv').config();
-
-console.log(require('dotenv').config())
+require('dotenv').config();
 
 console.log(process.env.REACT_APP_DATABASE_URL)
 

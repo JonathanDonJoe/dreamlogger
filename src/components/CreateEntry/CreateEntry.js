@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './CreateEntry.css';
 
 class CreateEntry extends Component {
     state = {
@@ -9,16 +10,18 @@ class CreateEntry extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        console.log('submitted')
-        const newPeopleArr = [...this.state.peopleArr]
-        newPeopleArr.push(this.state.people)
-        this.setState({
-            peopleArr: newPeopleArr
-        }, () => {
+        // console.log('submitted')
+        if(this.state.people) {
+            const newPeopleArr = [...this.state.peopleArr]
+            newPeopleArr.push(this.state.people)
             this.setState({
-                people: ''
+                peopleArr: newPeopleArr
+            }, () => {
+                this.setState({
+                    people: ''
+                })
             })
-        })
+        }
     }
     changeTitle = (e) => {
         this.setState({
@@ -41,14 +44,15 @@ class CreateEntry extends Component {
         this.setState({
             peopleArr: newPeopleArr
         })
-        
+
     }
 
-    render() { 
+    render() {
         console.log(this.state)
 
-        let peopleTags = this.state.peopleArr.map( (person, i) => {
-            return(<div className="chip" data-name={person} onClick={this.onTagClose} key={i}>
+        let peopleTags = this.state.peopleArr.map((person, i) => {
+            return (<div className="chip" data-name={person} onClick={this.onTagClose} key={i}>
+                {/* Look for something to use as an 'X' button */}
                 {person}
                 {/* <i className="close material-icons" onClick={this.onTagClose} >close</i> */}
             </div>)
@@ -56,20 +60,20 @@ class CreateEntry extends Component {
         console.log(peopleTags);
 
         return (
-            <div className="container orange lighten-2 ">
+            <div className="container lighten-2 create-entry-container">
                 <h2>Submit Entry</h2>
                 <form id="entry-form" onSubmit={this.onSubmit}>
                     <div className="row">
                         <div className="input-field col s8 offset-s2">
-                            <input value={this.state.title} onChange={this.changeTitle} type="text" className="validate white" placeholder="Dream Title" />
-                            <label htmlFor="input_text"></label>
+                            <input id='dream_title' value={this.state.title} onChange={this.changeTitle} type="text" className="validate" placeholder="Crazy pirates" />
+                            <label htmlFor="dream_title">Title</label>
                         </div>
                     </div>
                     <div className="row">
                         <div className="input-field col s8 offset-s2">
-                            <input value={this.state.people} onChange={this.changePeople} type="text" className="validate white" placeholder="People" />
-                            <label htmlFor="input_text"></label>
-                    {peopleTags}
+                            <input id='dream-people' value={this.state.people} onChange={this.changePeople} type="text" className="validate" placeholder="Jonny Depp" />
+                            <label htmlFor="dream-people">People</label>
+                            {peopleTags}
                         </div>
                     </div>
                     <button>Submit</button>
@@ -78,5 +82,5 @@ class CreateEntry extends Component {
         );
     }
 }
- 
+
 export default CreateEntry;

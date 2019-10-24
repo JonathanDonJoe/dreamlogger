@@ -16,7 +16,7 @@ class App extends Component {
 
         const rootRef = firebase.database().ref().child('Hi');
         rootRef.on('value', snap => {
-            console.log(snap.val())
+            // console.log(snap.val())
             this.setState({
                 text: snap.val()
             })

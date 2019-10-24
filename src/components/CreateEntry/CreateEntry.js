@@ -6,7 +6,8 @@ class CreateEntry extends Component {
         msg: '',
         title: '',
         people: '',
-        peopleArr: []
+        peopleArr: [],
+        contents: ''
     }
 
     onSubmit = (e) => {
@@ -52,6 +53,11 @@ class CreateEntry extends Component {
             people: e.target.value
         })
     }
+    changeContents = (e) => {
+        this.setState({
+            contents: e.target.value
+        })
+    }
 
     onTagClose = (e) => {
         // e.preventDefault();
@@ -90,8 +96,8 @@ class CreateEntry extends Component {
                 <form id="entry-form" onSubmit={this.onSubmit}>
                     <div className="row">
                         <div className="input-field col s8 offset-s2">
-                            <input id='dream_title' value={this.state.title} onChange={this.changeTitle} type="text" className="validate" placeholder="Crazy pirates" />
-                            <label htmlFor="dream_title">Title</label>
+                            <input id='dream-title' value={this.state.title} onChange={this.changeTitle} type="text" className="validate" placeholder="Crazy pirates" />
+                            <label htmlFor="dream-title">Title</label>
                         </div>
                     </div>
                     <div className="row">
@@ -99,6 +105,12 @@ class CreateEntry extends Component {
                             <input id='dream-people' value={this.state.people} onChange={this.changePeople} type="text" className="validate" placeholder="Jonny Depp" />
                             <label htmlFor="dream-people">People</label>
                             {peopleTags}
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="input-field col s8 offset-s2">
+                            <input id='dream-contents' value={this.state.contents} onChange={this.changeContents} type="text" className="validate" placeholder="I had a dream about some crazy pirates led by Jonny Depp.  " />
+                            <label htmlFor="dream-title">Dream Contents</label>
                         </div>
                     </div>
                     <button>Submit</button>

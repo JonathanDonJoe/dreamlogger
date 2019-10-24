@@ -1,7 +1,5 @@
 require('dotenv').config();
 
-console.log(process.env.REACT_APP_DATABASE_URL)
-
 export default {
     apiKey: process.env.REACT_APP_API_KEY,
     authDomain: process.env.REACT_APP_AUTH_DOMAIN,

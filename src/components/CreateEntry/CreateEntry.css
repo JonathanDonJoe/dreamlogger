@@ -1,4 +1,10 @@
 .create-entry-container {
     border: black 2px solid;
     padding-bottom: 20px;
+    padding-top: 40px;
+}
+
+.message-prompt {
+    color: red;
+    margin: 0px;
 }

@@ -35,7 +35,7 @@ class App extends Component {
         return (
             <Router>
                 <div className="App">
-                    <h1>{this.state.text}</h1>
+                    {/* <h1>{this.state.text}</h1> */}
                     <Route path='/home' component={Home} />
                     <Route path='/entry' component={CreateEntry} />
                     <Route path='/dreams' component={AllDreams} />

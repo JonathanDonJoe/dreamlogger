@@ -3,6 +3,7 @@ import './CreateEntry.css';
 
 class CreateEntry extends Component {
     state = {
+        msg: '',
         title: '',
         people: '',
         peopleArr: []
@@ -10,17 +11,35 @@ class CreateEntry extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        // console.log('submitted')
+        console.log('submit ran')
         if(this.state.people) {
-            const newPeopleArr = [...this.state.peopleArr]
-            newPeopleArr.push(this.state.people)
-            this.setState({
-                peopleArr: newPeopleArr
-            }, () => {
+            console.log('new person submitted')
+            if (!this.state.peopleArr.includes(this.state.people)) {
+
+                const newPeopleArr = [...this.state.peopleArr]
+                newPeopleArr.push(this.state.people)
                 this.setState({
-                    people: ''
+                    peopleArr: newPeopleArr
+                }, () => {
+                    this.setState({
+                        people: ''
+                    })
                 })
-            })
+            } else {
+                console.log('repeated name')
+                this.setState({
+                    msg: 'Tried to add duplicate person',
+                    people: ''
+                }, () => {
+                    setTimeout(() => {
+                        this.setState({
+                            msg: ''
+                        })
+                    }, 4000)
+                })
+            }
+        } else {
+            console.log('Actual submit')
         }
     }
     changeTitle = (e) => {
@@ -59,8 +78,14 @@ class CreateEntry extends Component {
         })
         console.log(peopleTags);
 
+        let msgHeader = <br />;
+        if (this.state.msg) {
+            msgHeader = <p className='message-prompt'>{this.state.msg}</p>
+        }
+
         return (
             <div className="container lighten-2 create-entry-container">
+                {msgHeader}
                 <h2>Submit Entry</h2>
                 <form id="entry-form" onSubmit={this.onSubmit}>
                     <div className="row">

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './CreateEntry.css';
 
+import * as firebase from 'firebase';
+
 class CreateEntry extends Component {
     state = {
         msg: '',
@@ -10,10 +12,11 @@ class CreateEntry extends Component {
         contents: ''
     }
 
+
     onSubmit = (e) => {
         e.preventDefault();
         console.log('submit ran')
-        if(this.state.people) {
+        if (this.state.people) {
             console.log('new person submitted')
             if (!this.state.peopleArr.includes(this.state.people)) {
 
@@ -41,6 +44,13 @@ class CreateEntry extends Component {
             }
         } else {
             console.log('Actual submit')
+            const rootRef = firebase.database().ref().child('Hi');
+            rootRef.on('value', snap => {
+                // console.log(snap.val())
+                this.setState({
+                    msg: snap.val()
+                })
+            })
         }
     }
     changeTitle = (e) => {

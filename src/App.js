@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import * as firebase from 'firebase';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
 import './App.css';
 import Home from './components/Home/Home';
@@ -9,19 +10,36 @@ import AllDreams from './components/AllDreams/AllDreams.js';
 
 class App extends Component {
     state = {
-        text: '20'
+        text: '20',
+        isSignedIn: false
     }
 
-    componentDidMount() {
+    uiConfig = {
+        // Popup signin flow rather than redirect flow.
+        signInFlow: 'popup',
+        // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
+        // signInSuccessUrl: '/signedIn',
+        // We will display Google and Facebook as auth providers.
+        signInOptions: [
+          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+          firebase.auth.EmailAuthProvider.PROVIDER_ID
+        ]
+      };
 
-        const rootRef = firebase.database().ref().child('Hi');
-        rootRef.on('value', snap => {
-            // console.log(snap.val())
+    componentDidMount() {
+        firebase.auth().onAuthStateChanged( user => {
             this.setState({
-                text: snap.val()
+                isSignedIn: !!user
             })
         })
-        this.writeUserData('joe')
+    //     const rootRef = firebase.database().ref().child('Hi');
+    //     rootRef.on('value', snap => {
+    //         // console.log(snap.val())
+    //         this.setState({
+    //             text: snap.val()
+    //         })
+    //     })
+    //     this.writeUserData('joe')
 
     }
 
@@ -32,10 +50,17 @@ class App extends Component {
     }
 
     render() {
+        console.log(this.state.isSignedIn)
         return (
             <Router>
                 <div className="App">
-                    {/* <h1>{this.state.text}</h1> */}
+                    {this.state.isSignedIn ? 
+                        <h1>signedIn</h1> :
+                        <StyledFirebaseAuth 
+                        uiConfig={this.uiConfig} 
+                        firebaseAuth={firebase.auth()}
+                        />
+                    }
                     <Route path='/home' component={Home} />
                     <Route path='/entry' component={CreateEntry} />
                     <Route path='/dreams' component={AllDreams} />

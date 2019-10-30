@@ -6,19 +6,19 @@ import * as firebase from 'firebase';
 import './index.css';
 import App from './App';
 import firebaseConfig from './components/Firebase/Firebase';
-// import { Provider } from 'react-redux';
-// import { createStore } from 'redux';
-// import rootReducer from './reducers/rootReducer';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import rootReducer from './reducers/rootReducer';
 
 
 firebase.initializeApp(firebaseConfig);
 
 
-// const store = createStore(rootReducer)
+const store = createStore(rootReducer)
 ReactDOM.render(
-    // <Provider store={store}>
+    <Provider store={store}>
         <App />
-    // </Provider>
+    </Provider>
     , document.getElementById('root')
 );
 

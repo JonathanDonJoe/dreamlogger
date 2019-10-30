@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import * as firebase from 'firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import { connect } from 'react-redux';
 
 import './App.css';
 import Home from './components/Home/Home';
@@ -52,6 +53,7 @@ class App extends Component {
 
     render() {
         console.log(this.state.isSignedIn)
+        console.log(this.props.auth)
         return (
             <Router>
                 <div className="App">
@@ -77,4 +79,10 @@ class App extends Component {
     }
 }
 
-export default App;
+function mapStateToProps(state) {
+    return ({
+        auth: state.auth
+    })
+}
+
+export default connect(mapStateToProps, null)(App);

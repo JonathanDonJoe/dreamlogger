@@ -8,6 +8,8 @@ import './App.css';
 import Home from './components/Home/Home';
 import CreateEntry from './components/CreateEntry/CreateEntry';
 import AllDreams from './components/AllDreams/AllDreams.js';
+import { bindActionCreators } from '../../../../Library/Caches/typescript/3.6/node_modules/redux';
+import loginAction from './actions/loginAction';
 
 class App extends Component {
     state = {
@@ -32,6 +34,10 @@ class App extends Component {
             console.log(user)
             this.setState({
                 isSignedIn: !!user
+            }, () => {
+                this.props.login({
+                    isSignedIn:this.state.isSignedIn
+                })
             })
         })
     //     const rootRef = firebase.database().ref().child('Hi');
@@ -85,4 +91,10 @@ function mapStateToProps(state) {
     })
 }
 
-export default connect(mapStateToProps, null)(App);
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        login: loginAction
+    }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

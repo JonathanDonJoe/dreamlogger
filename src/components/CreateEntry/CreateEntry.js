@@ -51,8 +51,18 @@ class CreateEntry extends Component {
                     msg: snap.val()
                 })
             })
+            this.writeUserData()
         }
     }
+
+    writeUserData() {
+        firebase.database().ref('users/' + firebase.auth().currentUser.uid).set({
+          title: this.state.title,
+          peopleArr: this.state.peopleArr,
+          contents : this.state.contents
+        });
+      }
+
     changeTitle = (e) => {
         this.setState({
             title: e.target.value
@@ -84,10 +94,10 @@ class CreateEntry extends Component {
 
     render() {
         console.log(this.state)
-        if (firebase.auth()) {
+        // if (firebase.auth()) {
 
-            console.log(firebase.auth().currentUser)
-        }
+        //     console.log(firebase.auth().currentUser)
+        // }
 
         let peopleTags = this.state.peopleArr.map((person, i) => {
             return (<div className="chip" data-name={person} onClick={this.onTagClose} key={i}>

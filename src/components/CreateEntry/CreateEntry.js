@@ -16,6 +16,7 @@ class CreateEntry extends Component {
     onSubmit = (e) => {
         e.preventDefault();
         console.log('submit ran')
+        // console.log(firebase.auth().currentUser.getIdToken())
         if (this.state.people) {
             console.log('new person submitted')
             if (!this.state.peopleArr.includes(this.state.people)) {
@@ -56,11 +57,11 @@ class CreateEntry extends Component {
     }
 
     writeUserData() {
-        firebase.database().ref('users/' + firebase.auth().currentUser.uid).set({
+        firebase.database().ref('users/' + firebase.auth().currentUser.uid).set([{
           title: this.state.title,
           peopleArr: this.state.peopleArr,
           contents : this.state.contents
-        });
+        }]);
       }
 
     changeTitle = (e) => {

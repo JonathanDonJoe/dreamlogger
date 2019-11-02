@@ -3,12 +3,12 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import * as firebase from 'firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import { connect } from 'react-redux';
+import { bindActionCreators } from '../../../../Library/Caches/typescript/3.6/node_modules/redux';
 
 import './App.css';
 import Home from './components/Home/Home';
 import CreateEntry from './components/CreateEntry/CreateEntry';
 import AllDreams from './components/AllDreams/AllDreams.js';
-import { bindActionCreators } from '../../../../Library/Caches/typescript/3.6/node_modules/redux';
 import loginAction from './actions/loginAction';
 
 class App extends Component {

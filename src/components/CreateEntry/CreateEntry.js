@@ -103,10 +103,6 @@ class CreateEntry extends Component {
 
     render() {
         console.log(this.state)
-        // if (firebase.auth()) {
-
-        //     console.log(firebase.auth().currentUser)
-        // }
 
         let peopleTags = this.state.peopleArr.map((person, i) => {
             return (<div className="chip" data-name={person} onClick={this.onTagClose} key={i}>

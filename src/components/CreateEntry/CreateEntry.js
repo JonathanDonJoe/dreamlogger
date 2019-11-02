@@ -57,11 +57,19 @@ class CreateEntry extends Component {
     }
 
     writeUserData() {
-        firebase.database().ref('users/' + firebase.auth().currentUser.uid).set([{
+        let ref = firebase.database().ref('users/' + firebase.auth().currentUser.uid)
+        let newChildRef = ref.push()
+        // console.log(newChildRef)
+        newChildRef.set({
           title: this.state.title,
           peopleArr: this.state.peopleArr,
           contents : this.state.contents
-        }]);
+        });
+        // ref.set([{
+        //   title: this.state.title,
+        //   peopleArr: this.state.peopleArr,
+        //   contents : this.state.contents
+        // }]);
       }
 
     changeTitle = (e) => {

@@ -7,21 +7,28 @@ class AllDreams extends Component {
 
     }
 
-    // componentDidMount() {
-    //     console.log(firebase.auth().currentUser)
-    // }
+    
+    componentDidMount() {
+        console.log(firebase.auth().currentUser)
+        const rootRef = firebase.database().ref().child(`users`);
+        rootRef.on('value', snap => {
+            console.log(snap.val())
+        })
+    }
 
-    render() { 
+    render() {
         console.log(this.props.auth)
-        if(firebase.auth().currentUser) {
-            console.log(firebase.auth().currentUser)
+        if (firebase.auth().currentUser) {
+            console.log(firebase.auth().currentUser.uid)
+
+
         }
         return (
             <h1>Every Entry Here</h1>
         );
     }
 }
- 
+
 function mapStateToProps(state) {
     return ({
         auth: state.auth

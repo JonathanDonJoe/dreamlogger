@@ -7,7 +7,17 @@ class AllDreams extends Component {
 
     }
 
-    
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.auth !== this.props.auth) {
+            console.log('Changed Props')
+            const rootRef = firebase.database().ref().child(`users/${firebase.auth().currentUser.uid}`);
+            rootRef.on('value', snap => {
+                console.log(snap.val())
+            })
+        }
+
+    }
+
     componentDidMount() {
         console.log(firebase.auth().currentUser)
         const rootRef = firebase.database().ref().child(`users`);

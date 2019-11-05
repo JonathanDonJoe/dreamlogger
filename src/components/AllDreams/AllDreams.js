@@ -50,11 +50,15 @@ class AllDreams extends Component {
 
         }
         console.log(this.state.dreams)
-        let dreamCards = this.state.dreams.map( (dream, i) => <DreamCard dream={dream} key={i}/>)
+        let dreamCards = this.state.dreams.map((dream, i) => <DreamCard dream={dream} key={i} />)
         return (
             <div>
                 <h1>Every Entry Here</h1>
-                {dreamCards}
+                <div className='container'>
+                    <div className='row'>
+                        {dreamCards}
+                    </div>
+                </div>
             </div>
         );
     }

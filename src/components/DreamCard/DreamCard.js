@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import './DreamCard.css'
 
 class DreamCard extends Component {
     state = {}
     render() {
         return (
-            <div id="event-card-style" className='col s12 m5 l3 blue-grey lighten-5'>
-                <div className='col s12'>
+
+            <div className='col s6 '>
+                <div className='dreamcard blue-grey lighten-5'>
+
                     <div className='row'>
                         <div className='col s12'>
                             <h2>{this.props.dream.title}</h2>
@@ -24,6 +27,7 @@ class DreamCard extends Component {
                     </div>
                 </div>
             </div>
+
         );
     }
 }

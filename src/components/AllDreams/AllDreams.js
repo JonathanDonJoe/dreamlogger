@@ -53,7 +53,7 @@ class AllDreams extends Component {
 
         let msg = <h1>Every Entry Here</h1>
         if (!this.props.auth.isSignedIn) {
-            msg= <h4>Please Log in</h4>
+            msg= <h4>Please Log In</h4>
         }
 
         console.log(this.state.dreams)

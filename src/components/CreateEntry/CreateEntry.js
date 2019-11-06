@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import * as firebase from 'firebase';
+import { connect } from 'react-redux'
+
 import './CreateEntry.css';
 
-import * as firebase from 'firebase';
 
 class CreateEntry extends Component {
     state = {
@@ -61,16 +63,16 @@ class CreateEntry extends Component {
         let newChildRef = ref.push()
         // console.log(newChildRef)
         newChildRef.set({
-          title: this.state.title,
-          peopleArr: this.state.peopleArr,
-          contents : this.state.contents
+            title: this.state.title,
+            peopleArr: this.state.peopleArr,
+            contents: this.state.contents
         });
         // ref.set([{
         //   title: this.state.title,
         //   peopleArr: this.state.peopleArr,
         //   contents : this.state.contents
         // }]);
-      }
+    }
 
     changeTitle = (e) => {
         this.setState({
@@ -118,8 +120,10 @@ class CreateEntry extends Component {
             msgHeader = <p className='message-prompt'>{this.state.msg}</p>
         }
 
-        return (
-            <div className="container lighten-2 create-entry-container">
+        let entryForm = <h4>Please Log In</h4>
+
+        if (this.props.auth.isSignedIn) {
+            entryForm = <div className="container lighten-2 create-entry-container">
                 {msgHeader}
                 <h2>Submit Entry</h2>
                 <form id="entry-form" onSubmit={this.onSubmit}>
@@ -145,8 +149,18 @@ class CreateEntry extends Component {
                     <button>Submit</button>
                 </form>
             </div>
+        }
+
+        return (
+            entryForm
         );
     }
 }
 
-export default CreateEntry;
+function mapStateToProps(state) {
+    return ({
+        auth: state.auth
+    })
+}
+
+export default connect(mapStateToProps, null)(CreateEntry);

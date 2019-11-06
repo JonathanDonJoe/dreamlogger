@@ -10,8 +10,11 @@ class AllDreams extends Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.auth !== this.props.auth) {
-            console.log('Changed Props')
-            this.getDreams()
+            console.log(this.props.auth.isSignedIn)
+            if (this.props.auth.isSignedIn) {
+                console.log('am signed in')
+                this.getDreams()
+            }
         }
     }
 
@@ -44,16 +47,20 @@ class AllDreams extends Component {
     render() {
         console.log(this.props.auth)
         console.log(this.state)
-        if (firebase.auth().currentUser) {
-            console.log(firebase.auth().currentUser.uid)
+        // if (firebase.auth().currentUser) {
+        //     console.log(firebase.auth().currentUser.uid)
+        // }
 
-
+        let msg = <h1>Every Entry Here</h1>
+        if (!this.props.auth.isSignedIn) {
+            msg= <h4>Please Log in</h4>
         }
+
         console.log(this.state.dreams)
         let dreamCards = this.state.dreams.map((dream, i) => <DreamCard dream={dream} key={i} />)
         return (
             <div>
-                <h1>Every Entry Here</h1>
+                {msg}
                 <div className='container'>
                     <div className='row'>
                         {dreamCards}

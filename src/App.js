@@ -77,8 +77,8 @@ class App extends Component {
                         />
                     }
                     <Route path='/home' component={Home} />
-                    <Route path='/entry' component={CreateEntry} />
-                    <Route path='/dreams' component={AllDreams} />
+                    <Route path='/entry' component={this.state.isSignedIn?CreateEntry:Home} />
+                    <Route path='/dreams' component={this.state.isSignedIn?AllDreams:Home} />
                 </div>
             </Router>
         );

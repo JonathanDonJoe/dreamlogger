@@ -14,6 +14,9 @@ class CreateEntry extends Component {
         contents: ''
     }
 
+    componentDidMount() {
+        window.M.updateTextFields()
+    }
 
     onSubmit = (e) => {
         e.preventDefault();
@@ -120,10 +123,9 @@ class CreateEntry extends Component {
             msgHeader = <p className='message-prompt'>{this.state.msg}</p>
         }
 
-        let entryForm = <h4>Please Log In</h4>
 
-        if (this.props.auth.isSignedIn) {
-            entryForm = <div className="container lighten-2 create-entry-container">
+        return (
+            <div className="container lighten-2 create-entry-container">
                 {msgHeader}
                 <h2>Submit Entry</h2>
                 <form id="entry-form" onSubmit={this.onSubmit}>
@@ -149,10 +151,6 @@ class CreateEntry extends Component {
                     <button>Submit</button>
                 </form>
             </div>
-        }
-
-        return (
-            entryForm
         );
     }
 }

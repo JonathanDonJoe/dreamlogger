@@ -8,7 +8,6 @@ class DreamCard extends Component {
 
             <div className='col s6 '>
                 <div className='dreamcard blue-grey lighten-5'>
-
                     <div className='row'>
                         <div className='col s12'>
                             <h2>{this.props.dream.title}</h2>

@@ -9,6 +9,7 @@ import './App.css';
 import Home from './components/Home/Home';
 import CreateEntry from './components/CreateEntry/CreateEntry';
 import AllDreams from './components/AllDreams/AllDreams.js';
+import SingleDream from './components/SingleDream/SingleDream';
 import loginAction from './actions/loginAction';
 
 class App extends Component {
@@ -76,9 +77,10 @@ class App extends Component {
                         firebaseAuth={firebase.auth()}
                         />
                     }
-                    <Route path='/home' component={Home} />
-                    <Route path='/entry' component={this.state.isSignedIn?CreateEntry:Home} />
-                    <Route path='/dreams' component={this.state.isSignedIn?AllDreams:Home} />
+                    <Route exact path='/home' component={Home} />
+                    <Route exact path='/entry' component={this.state.isSignedIn?CreateEntry:Home} />
+                    <Route exact path='/dreams' component={this.state.isSignedIn?AllDreams:Home} />
+                    <Route path='/dream/:dreamId' component={this.state.isSignedIn?SingleDream:Home} />
                 </div>
             </Router>
         );

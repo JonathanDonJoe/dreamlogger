@@ -148,6 +148,13 @@ class CreateEntry extends Component {
                             <label htmlFor="dream-title">Dream Contents</label>
                         </div>
                     </div>
+                    <div className="row">
+                    <div className="input-field col s8 offset-s2">
+                        {/* <input onChange={this.changeDate1} value={this.state.date1} type="date" /> */}
+                        <input id='dream-date' type="date" />
+                        <label htmlFor="dream-date">Date</label>
+                    </div>
+                    </div>
                     <button>Submit</button>
                 </form>
             </div>

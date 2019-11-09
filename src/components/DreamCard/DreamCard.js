@@ -4,24 +4,44 @@ import './DreamCard.css'
 class DreamCard extends Component {
     state = {}
     render() {
+        let dreamTitle = 'Untitled'
+        let dreamDate = 'No date'
+        let dreamContents = 'No Contents'
+        let dreamPeople = 'none';
+        if (this.props.dream.peopleArr) {
+            dreamPeople = this.props.dream.peopleArr.join(', ');
+        }
+        if (this.props.dream.date) {
+            dreamDate = this.props.dream.date;
+        }
+        if (this.props.dream.title) {
+            dreamTitle = this.props.dream.title;
+        }
+        if (this.props.dream.contents) {
+            dreamContents = this.props.dream.contents;
+        }
         return (
 
             <div className='col s6 '>
                 <div className='dreamcard blue-grey lighten-5'>
                     <div className='row'>
                         <div className='col s12'>
-                            <h2>{this.props.dream.title}</h2>
+                            <h2>{dreamTitle}</h2>
+                        </div>
+                    </div>
+                    <div className='row'>
+                        <div className='col s12'>
+                            <p>Dream Date: {dreamDate}</p>
                         </div>
                     </div>
                     <div className="row">
                         <div className='col s12'>
-                            <p>{this.props.dream.contents}</p>
+                            <p>{dreamContents}</p>
                         </div>
                     </div>
                     <div className="row">
                         <div className='col s12'>
-                            <div>Associated people: {this.props.dream.peopleArr.join(', ')}</div>
-
+                            <div>Associated people: {dreamPeople}</div>
                         </div>
                     </div>
                 </div>

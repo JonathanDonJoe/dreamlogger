@@ -51,13 +51,13 @@ class CreateEntry extends Component {
             }
         } else {
             console.log('Actual submit')
-            const rootRef = firebase.database().ref().child('Hi');
-            rootRef.on('value', snap => {
-                // console.log(snap.val())
-                this.setState({
-                    msg: snap.val()
-                })
-            })
+            // const rootRef = firebase.database().ref().child('Hi');
+            // rootRef.on('value', snap => {
+            //     // console.log(snap.val())
+            //     this.setState({
+            //         msg: snap.val()
+            //     })
+            // })
             this.writeUserData()
         }
     }
@@ -69,7 +69,8 @@ class CreateEntry extends Component {
         newChildRef.set({
             title: this.state.title,
             peopleArr: this.state.peopleArr,
-            contents: this.state.contents
+            contents: this.state.contents,
+            date: this.state.date
         });
         // ref.set([{
         //   title: this.state.title,

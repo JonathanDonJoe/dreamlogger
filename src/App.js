@@ -65,6 +65,7 @@ class App extends Component {
         return (
             <Router>
                 <div className="App">
+                    <Route path='/' component={SideNav} />
                     {this.state.isSignedIn ? 
                         (<span>
                             {/* <h1>signedIn</h1>  */}
@@ -78,7 +79,6 @@ class App extends Component {
                         firebaseAuth={firebase.auth()}
                         />
                     }
-                    <Route path='/' component={SideNav} />
                     <Route exact path='/home' component={Home} />
                     <Route exact path='/entry' component={this.state.isSignedIn?CreateEntry:Home} />
                     <Route exact path='/dreams' component={this.state.isSignedIn?AllDreams:Home} />

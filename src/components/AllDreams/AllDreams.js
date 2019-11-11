@@ -18,7 +18,7 @@ class AllDreams extends Component {
         }
     }
 
-    // componentDidMount() {
+    componentDidMount() {
     //     console.log(firebase.auth().currentUser)
     //     const rootRef = firebase.database().ref().child(`users`);
     //     rootRef.on('value', snap => {
@@ -26,7 +26,8 @@ class AllDreams extends Component {
     //             dreams: snap.val()
     //         })
     //     })
-    // }
+        this.getDreams()
+    }
 
     getDreams() {
         const rootRef = firebase.database().ref().child(`users/${firebase.auth().currentUser.uid}`);

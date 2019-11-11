@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 
 class SideNav extends Component {
     state = {}
     componentDidUpdate() {
-        // document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('.sidenav');
-            window.M.Sidenav.init(elems, {});
-        //   });
+        var elems = document.querySelectorAll('.sidenav');
+        window.M.Sidenav.init(elems, {});
     }
     render() {
+        console.log(NavLink)
         return (
             <div>
                 <ul id="slide-out" className="sidenav">
-                    <li><a href="#!">First Sidebar Link</a></li>
-                    <li><a href="#!">Second Sidebar Link</a></li>
+                    <li><NavLink to="/dreams">Name to show</NavLink></li>
                 </ul>
                 <a href="#" data-target="slide-out" className="sidenav-trigger show-on-large"><i className="material-icons">menu</i></a>
 

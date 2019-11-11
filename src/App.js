@@ -10,6 +10,7 @@ import Home from './components/Home/Home';
 import CreateEntry from './components/CreateEntry/CreateEntry';
 import AllDreams from './components/AllDreams/AllDreams.js';
 import SingleDream from './components/SingleDream/SingleDream';
+import SideNav from './components/SideNav/SideNav';
 import loginAction from './actions/loginAction';
 
 class App extends Component {
@@ -77,6 +78,7 @@ class App extends Component {
                         firebaseAuth={firebase.auth()}
                         />
                     }
+                    <Route path='/' component={SideNav} />
                     <Route exact path='/home' component={Home} />
                     <Route exact path='/entry' component={this.state.isSignedIn?CreateEntry:Home} />
                     <Route exact path='/dreams' component={this.state.isSignedIn?AllDreams:Home} />

@@ -10,7 +10,7 @@ class AllDreams extends Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.auth !== this.props.auth) {
-            console.log(this.props.auth.isSignedIn)
+            // console.log(this.props.auth.isSignedIn)
             if (this.props.auth.isSignedIn) {
                 console.log('am signed in')
                 this.getDreams()
@@ -32,13 +32,13 @@ class AllDreams extends Component {
     getDreams() {
         const rootRef = firebase.database().ref().child(`users/${firebase.auth().currentUser.uid}`);
         rootRef.on('value', snap => {
-            console.log(snap.val())
+            // console.log(snap.val())
             const dreamArr = []
             for (let key in snap.val()) {
                 dreamArr.push(snap.val()[key])
             }
-            console.log(snap.val())
-            console.log(dreamArr)
+            // console.log(snap.val())
+            // console.log(dreamArr)
             this.setState({
                 dreams: dreamArr
             })
@@ -46,15 +46,16 @@ class AllDreams extends Component {
     }
 
     render() {
-        console.log(this.props.auth)
-        console.log(this.state)
+        // console.log(this.props.auth)
+        // console.log(this.state)
+
         // if (firebase.auth().currentUser) {
         //     console.log(firebase.auth().currentUser.uid)
         // }
 
         let msg = <h1>Every Entry Here</h1>
 
-        console.log(this.state.dreams)
+        // console.log(this.state.dreams)
         let dreamCards = this.state.dreams.map((dream, i) => <DreamCard dream={dream} key={i} />)
         return (
             <div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux'
 
 class SideNav extends Component {
     state = {}
@@ -8,17 +9,34 @@ class SideNav extends Component {
         window.M.Sidenav.init(elems, {});
     }
     render() {
-        console.log(NavLink)
+        console.log(this.props.auth.isSignedIn)
+
+        let links =  <li key='0'><NavLink to="/home">Home</NavLink></li>
+        
+        if(this.props.auth.isSignedIn) {
+            links = [
+                <li key='0'><NavLink to="/home">Home</NavLink></li>,
+                <li key='1'><NavLink to="/entry">New Dream</NavLink></li>,
+                <li key='2'><NavLink to="/dreams">All Dreams</NavLink></li>
+            ]
+        }
+
         return (
             <div>
                 <ul id="slide-out" className="sidenav">
-                    <li><NavLink to="/dreams">Name to show</NavLink></li>
+                    {links}
                 </ul>
-                <a href="#" data-target="slide-out" className="sidenav-trigger show-on-large"><i className="material-icons">menu</i></a>
-
+                <a href="#sidenav" data-target="slide-out" className="sidenav-trigger show-on-large"><i className="material-icons">menu</i></a>
             </div>
         );
     }
 }
 
-export default SideNav;
+
+function mapStateToProps(state) {
+    return ({
+        auth: state.auth
+    })
+}
+
+export default connect(mapStateToProps, null)(SideNav);

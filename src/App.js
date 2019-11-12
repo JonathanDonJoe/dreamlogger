@@ -58,9 +58,9 @@ class App extends Component {
                     <Route path='/' component={SideNav} />
                     <Route path='/login' component={LogIn} />
                     <Route exact path='/home' component={Home} />
-                    <Route exact path='/entry' component={this.state.isSignedIn?CreateEntry:Home} />
-                    <Route exact path='/dreams' component={this.state.isSignedIn?AllDreams:Home} />
-                    <Route path='/dream/:dreamId' component={this.state.isSignedIn?SingleDream:Home} />
+                    <Route exact path='/entry' component={this.state.isSignedIn?CreateEntry:LogIn} />
+                    <Route exact path='/dreams' component={this.state.isSignedIn?AllDreams:LogIn} />
+                    <Route path='/dream/:dreamId' component={this.state.isSignedIn?SingleDream:LogIn} />
                 </div>
             </Router>
         );

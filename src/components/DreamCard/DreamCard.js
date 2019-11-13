@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 import './DreamCard.css'
 
 class DreamCard extends Component {
@@ -22,6 +24,7 @@ class DreamCard extends Component {
             dreamContents = this.props.dream.contents;
         }
         return (
+            <Link to={`/dreams/${this.props.dreamId}`} >
             <div className="col s6">
               <div className="card grey darken-1">
                 <div className="card-content white-text">
@@ -33,6 +36,7 @@ class DreamCard extends Component {
                 </div>
               </div>
             </div>
+            </Link>
             // <div className='col s6 '>
             //     <div className='dreamcard blue-grey lighten-5'>
             //         <div className='row'>

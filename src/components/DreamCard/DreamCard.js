@@ -21,31 +21,41 @@ class DreamCard extends Component {
             dreamContents = this.props.dream.contents;
         }
         return (
-
-            <div className='col s6 '>
-                <div className='dreamcard blue-grey lighten-5'>
-                    <div className='row'>
-                        <div className='col s12'>
-                            <h2>{dreamTitle}</h2>
-                        </div>
-                    </div>
-                    <div className='row'>
-                        <div className='col s12'>
-                            <p>Dream Date: {dreamDate}</p>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className='col s12'>
-                            <p>{dreamContents}</p>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className='col s12'>
-                            <div>Associated people: {dreamPeople}</div>
-                        </div>
-                    </div>
+            <div class="col s6">
+              <div class="card grey darken-1">
+                <div class="card-content white-text">
+                  <span class="card-title">{dreamTitle}</span>
+                  <span class="card-date">{dreamDate}</span>
+                  <p class="card-people">{dreamPeople}</p>
+                  <hr/>
+                  <p>{dreamContents}</p>
                 </div>
+              </div>
             </div>
+            // <div className='col s6 '>
+            //     <div className='dreamcard blue-grey lighten-5'>
+            //         <div className='row'>
+            //             <div className='col s12'>
+            //                 <h2>{dreamTitle}</h2>
+            //             </div>
+            //         </div>
+            //         <div className='row'>
+            //             <div className='col s12'>
+            //                 <p>Dream Date: {dreamDate}</p>
+            //             </div>
+            //         </div>
+            //         <div className="row">
+            //             <div className='col s12'>
+            //                 <p>{dreamContents}</p>
+            //             </div>
+            //         </div>
+            //         <div className="row">
+            //             <div className='col s12'>
+            //                 <div>Associated people: {dreamPeople}</div>
+            //             </div>
+            //         </div>
+            //     </div>
+            // </div>
 
         );
     }

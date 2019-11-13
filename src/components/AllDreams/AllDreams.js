@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as firebase from 'firebase';
 import { connect } from 'react-redux';
 import DreamCard from '../DreamCard/DreamCard';
+import './AllDreams.css';
 
 class AllDreams extends Component {
     state = {
@@ -60,7 +61,7 @@ class AllDreams extends Component {
         return (
             <div>
                 {msg}
-                <div className='container'>
+                <div className='container card-container'>
                     <div className='row'>
                         {dreamCards}
                     </div>

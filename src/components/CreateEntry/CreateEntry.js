@@ -64,6 +64,7 @@ class CreateEntry extends Component {
 
     clearForm = (e) => {
         e.preventDefault()
+        console.log('clear ran')
         this.setState({
             title: '',
             people: '',
@@ -126,8 +127,6 @@ class CreateEntry extends Component {
     }
 
     render() {
-        console.log(this.state)
-
         let peopleTags = this.state.peopleArr.map((person, i) => {
             return (<div className="chip" data-name={person} onClick={this.onTagClose} key={i}>
                 {/* Look for something to use as an 'X' button */}
@@ -144,7 +143,7 @@ class CreateEntry extends Component {
         return (
             <div className="container lighten-2 create-entry-container">
                 {msgHeader}
-                <h2>Submit Entry</h2>
+                <h2>Submit Dream Entry</h2>
                 <form id="entry-form" onSubmit={this.onSubmit}>
                     <div className="row">
                         <div className="input-field col s8 offset-s2">
@@ -172,8 +171,10 @@ class CreateEntry extends Component {
                             <label htmlFor="dream-date" >Date</label>
                         </div>
                     </div>
-                    <button type='submit' >Submit</button>
-                    <button type='button' onClick={this.clearForm} >Clear</button>
+                    <div className='buttons-container'>
+                        <button type='submit' className='btn red lighten-1' >Submit</button>
+                        <button type='button' onClick={this.clearForm} className='btn red lighten-1' >Clear</button>
+                    </div>
                 </form>
             </div>
         );

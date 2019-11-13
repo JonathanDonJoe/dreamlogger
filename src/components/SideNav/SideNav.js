@@ -32,7 +32,7 @@ class SideNav extends Component {
                 <ul id="slide-out" className="sidenav">
                     {links}
                 </ul>
-                <a href="#sidenav" data-target="slide-out" className="sidenav-trigger show-on-large btn-floating btn-large waves-effect waves-light red" ><i className="material-icons">menu</i></a>
+                <a href="#sidenav" data-target="slide-out" className="sidenav-trigger show-on-large btn-floating btn-large waves-effect waves-light red lighten-1" ><i className="material-icons">menu</i></a>
             </div>
         );
     }

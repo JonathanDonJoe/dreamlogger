@@ -9,3 +9,9 @@
     color: red;
     margin: 0px;
 }
+
+.buttons-container .btn{
+    /* display: flex;
+    justify-content: center; */
+    margin: 0 30px;
+}

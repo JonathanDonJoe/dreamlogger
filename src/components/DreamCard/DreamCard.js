@@ -12,7 +12,8 @@ class DreamCard extends Component {
             dreamPeople = this.props.dream.peopleArr.join(', ');
         }
         if (this.props.dream.date) {
-            dreamDate = this.props.dream.date;
+            let dreamArr = this.props.dream.date.split('-');
+            dreamDate = [dreamArr[1], dreamArr[2], dreamArr[0]].join('-')
         }
         if (this.props.dream.title) {
             dreamTitle = this.props.dream.title;
@@ -21,14 +22,14 @@ class DreamCard extends Component {
             dreamContents = this.props.dream.contents;
         }
         return (
-            <div class="col s6">
-              <div class="card grey darken-1">
-                <div class="card-content white-text">
-                  <span class="card-title">{dreamTitle}</span>
-                  <span class="card-date">{dreamDate}</span>
-                  <p class="card-people">{dreamPeople}</p>
+            <div className="col s6">
+              <div className="card grey darken-1">
+                <div className="card-content white-text">
+                  <span className="card-title">{dreamTitle}</span>
+                  <span className="card-date">{dreamDate}</span>
+                  <p className="card-people">{dreamPeople}</p>
                   <hr/>
-                  <p>{dreamContents}</p>
+                  <p className='max-lines'>{dreamContents}</p>
                 </div>
               </div>
             </div>

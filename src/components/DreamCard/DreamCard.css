@@ -1,3 +1,13 @@
 .dreamcard {
     margin: 20px;
 }
+
+.max-lines {
+    /* display: block; */
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    height: 4.5em;
+    max-height: 4.5em;
+    line-height: 1.5em;
+  }

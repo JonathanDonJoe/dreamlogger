@@ -62,6 +62,17 @@ class CreateEntry extends Component {
         }
     }
 
+    clearForm = (e) => {
+        e.preventDefault()
+        this.setState({
+            title: '',
+            people: '',
+            peopleArr: [],
+            contents: '',
+            date: ''
+        })
+    }
+
     writeUserData() {
         let ref = firebase.database().ref('users/' + firebase.auth().currentUser.uid)
         let newChildRef = ref.push()
@@ -124,8 +135,6 @@ class CreateEntry extends Component {
                 {/* <i className="close material-icons" onClick={this.onTagClose} >close</i> */}
             </div>)
         })
-        console.log(peopleTags);
-
         let msgHeader = <br />;
         if (this.state.msg) {
             msgHeader = <p className='message-prompt'>{this.state.msg}</p>
@@ -157,13 +166,14 @@ class CreateEntry extends Component {
                         </div>
                     </div>
                     <div className="row">
-                    <div className="input-field col s8 offset-s2">
-                        {/* <input onChange={this.changeDate1} value={this.state.date1} type="date" /> */}
-                        <input id='dream-date' type="date" onChange={this.changeDate} value={this.state.date} />
-                        <label htmlFor="dream-date" >Date</label>
+                        <div className="input-field col s8 offset-s2">
+                            {/* <input onChange={this.changeDate1} value={this.state.date1} type="date" /> */}
+                            <input id='dream-date' type="date" onChange={this.changeDate} value={this.state.date} />
+                            <label htmlFor="dream-date" >Date</label>
+                        </div>
                     </div>
-                    </div>
-                    <button>Submit</button>
+                    <button type='submit' >Submit</button>
+                    <button type='button' onClick={this.clearForm} >Clear</button>
                 </form>
             </div>
         );

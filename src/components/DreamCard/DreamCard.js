@@ -9,10 +9,10 @@ class DreamCard extends Component {
         let dreamTitle = 'Untitled'
         let dreamDate = 'No date'
         let dreamContents = 'No Contents'
-        let dreamPeople = 'none';
-        if (this.props.dream.peopleArr) {
-            dreamPeople = this.props.dream.peopleArr.join(', ');
-        }
+        // let dreamPeople = 'none';
+        // if (this.props.dream.peopleArr) {
+        //     dreamPeople = this.props.dream.peopleArr.join(', ');
+        // }
         if (this.props.dream.date) {
             let dreamArr = this.props.dream.date.split('-');
             dreamDate = [dreamArr[1], dreamArr[2], dreamArr[0]].join('-')
@@ -25,12 +25,12 @@ class DreamCard extends Component {
         }
         return (
             <Link to={`/dreams/${this.props.dreamId}`} >
-            <div className="col s6">
+            <div className="col s12 m6 l4">
               <div className="card grey darken-1">
                 <div className="card-content white-text">
                   <span className="card-title">{dreamTitle}</span>
                   <span className="card-date">{dreamDate}</span>
-                  <p className="card-people">{dreamPeople}</p>
+                  {/* <p className="card-people">{dreamPeople}</p> */}
                   <hr/>
                   <p className='max-lines'>{dreamContents}</p>
                 </div>

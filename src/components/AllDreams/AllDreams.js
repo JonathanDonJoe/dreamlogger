@@ -38,7 +38,7 @@ class AllDreams extends Component {
             for (let key in snap.val()) {
                 dreamArr.push(snap.val()[key])
             }
-            console.log(snap.val())
+            // console.log(snap.val())
             // console.log(dreamArr)
             this.setState({
                 dreams: dreamArr

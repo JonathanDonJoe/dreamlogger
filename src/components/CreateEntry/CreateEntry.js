@@ -80,7 +80,7 @@ class CreateEntry extends Component {
         // console.log(newChildRef)
         newChildRef.set({
             title: this.state.title,
-            peopleArr: this.state.peopleArr,
+            peopleArr: this.state.peopleArr.sort(),
             contents: this.state.contents,
             date: this.state.date
         });

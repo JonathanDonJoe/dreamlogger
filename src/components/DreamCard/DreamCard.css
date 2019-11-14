@@ -10,4 +10,14 @@
     height: 4.5em;
     max-height: 4.5em;
     line-height: 1.5em;
-  }
+}
+
+.card-title {
+    display: flex;
+    align-items: center;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    height: 3em;
+    /* max-height: 3em; */
+}

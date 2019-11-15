@@ -19,7 +19,15 @@ class App extends Component {
         isSignedIn: false
     }
 
-    
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.auth !== this.props.auth) {
+            // console.log(this.props.auth.isSignedIn)
+            if (this.props.auth.isSignedIn) {
+                console.log('am signed in')
+                this.getDreams()
+            }
+        }
+    }
 
     componentDidMount() {
         firebase.auth().onAuthStateChanged( user => {
@@ -30,8 +38,13 @@ class App extends Component {
                 this.props.login({
                     isSignedIn:this.state.isSignedIn
                 })
+                console.log('mount')
+                if(this.state.isSignedIn){
+                    this.getDreams()
+                }
             })
         })
+        // this.getDreams()
     //     const rootRef = firebase.database().ref().child('Hi');
     //     rootRef.on('value', snap => {
     //         // console.log(snap.val())
@@ -41,6 +54,22 @@ class App extends Component {
     //     })
     //     this.writeUserData('joe')
 
+    }
+
+    getDreams() {
+        const rootRef = firebase.database().ref().child(`users/${firebase.auth().currentUser.uid}`);
+        rootRef.on('value', snap => {
+            // console.log(snap.val())
+            const dreamArr = []
+            for (let key in snap.val()) {
+                dreamArr.push(snap.val()[key])
+            }
+            // console.log(snap.val())
+            console.log(dreamArr)
+            // this.setState({
+            //     dreams: dreamArr
+            // })
+        })
     }
 
     writeUserData(name) {

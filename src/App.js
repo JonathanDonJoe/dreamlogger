@@ -12,6 +12,7 @@ import SingleDream from './components/SingleDream/SingleDream';
 import SideNav from './components/SideNav/SideNav';
 import LogIn from './components/LogIn/LogIn';
 import loginAction from './actions/loginAction';
+import setDreamAction from './actions/setDreamAction';
 
 class App extends Component {
     state = {
@@ -69,6 +70,7 @@ class App extends Component {
             // this.setState({
             //     dreams: dreamArr
             // })
+            this.props.setDream(dreamArr)
         })
     }
 
@@ -80,7 +82,7 @@ class App extends Component {
 
     render() {
         console.log(this.state.isSignedIn)
-        console.log(this.props.auth)
+        console.log(this.props)
         return (
             <Router>
                 <div className="App">
@@ -98,13 +100,15 @@ class App extends Component {
 
 function mapStateToProps(state) {
     return ({
-        auth: state.auth
+        auth: state.auth,
+        myDreams: state.myDreams
     })
 }
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-        login: loginAction
+        login: loginAction,
+        setDream: setDreamAction
     }, dispatch)
 }
 

@@ -62,11 +62,14 @@ class App extends Component {
         rootRef.on('value', snap => {
             // console.log(snap.val())
             const dreamArr = []
+            let dreamItem = {}
             for (let key in snap.val()) {
-                dreamArr.push(snap.val()[key])
+                // console.log(key)
+                dreamItem = snap.val()[key]
+                dreamItem['dreamKey'] = key
+                // console.log(dreamItem)
+                dreamArr.push(dreamItem)
             }
-            // console.log(snap.val())
-            console.log(dreamArr)
             // this.setState({
             //     dreams: dreamArr
             // })

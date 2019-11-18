@@ -8,6 +8,19 @@ class SingleDream extends Component {
         }
     }
 
+    componentDidMount() {
+        // This runs before this.props.myDreams is updated by the store
+        console.log('componentDidMount')
+        console.log(this.props)
+        if (this.props.myDreams.length){
+            let dreamIndex = Object.keys(this.props.myDreams).find(key => this.props.myDreams[key].dreamKey === this.props.match.params.dreamId)
+            console.log('updated')
+            this.setState({
+                dream: this.props.myDreams[dreamIndex]
+            })
+        }
+    }
+
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.myDreams !== this.props.myDreams) {
             // console.log(this.props.auth.isSignedIn)
@@ -20,21 +33,17 @@ class SingleDream extends Component {
 
             if (this.props.myDreams.length){
                 let dreamIndex = Object.keys(this.props.myDreams).find(key => this.props.myDreams[key].dreamKey === this.props.match.params.dreamId)
+                console.log('updated')
                 this.setState({
                     dream: this.props.myDreams[dreamIndex]
                 })
             }
         }
     }
-
-    // componentDidMount() {
-    //     console.log('componentDidMount')
-    //     console.log(this.props.myDreams)
-    // }
     
     render() { 
         
-    console.log(this.state)
+    // console.log(this.state)
 
         return (
             <h1>{this.state.dream.title}</h1>

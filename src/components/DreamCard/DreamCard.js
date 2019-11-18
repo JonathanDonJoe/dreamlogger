@@ -24,7 +24,7 @@ class DreamCard extends Component {
             dreamContents = this.props.dream.contents;
         }
         return (
-            <Link to={`/dreams/${this.props.dreamId}`} >
+            <Link to={`/dreams/${this.props.dream.dreamKey}`} >
             <div className="col s12 m6 l4">
               <div className="card grey darken-1">
                 <div className="card-content white-text">

@@ -16,7 +16,7 @@ class SingleDream extends Component {
         // This runs before this.props.myDreams is updated by the store
         console.log('componentDidMount')
         console.log(this.props)
-        if (this.props.myDreams.length){
+        if (this.props.myDreams.length) {
             let dreamIndex = Object.keys(this.props.myDreams).find(key => this.props.myDreams[key].dreamKey === this.props.match.params.dreamId)
             console.log('updated')
             this.setState({
@@ -35,7 +35,7 @@ class SingleDream extends Component {
             console.log('componentDidUpdate')
             console.log(this.props.myDreams)
 
-            if (this.props.myDreams.length){
+            if (this.props.myDreams.length) {
                 let dreamIndex = Object.keys(this.props.myDreams).find(key => this.props.myDreams[key].dreamKey === this.props.match.params.dreamId)
                 console.log('updated')
                 this.setState({
@@ -44,21 +44,27 @@ class SingleDream extends Component {
             }
         }
     }
-    
-    render() { 
-        
-    // console.log(this.state)
+
+    render() {
+
+        // console.log(this.state)
         let dreamTitle = 'Untitled'
         let dreamDate = 'No date'
         let dreamContents = 'No Contents'
         let dreamPeople = 'none';
-        
+
         if (this.state.dream.peopleArr) {
             dreamPeople = this.state.dream.peopleArr.join(', ');
         }
+
+        const dateArr = ["January", "February", "March", "April", "May", "June", "July",
+            "August", "September", "October", "November", "December"]
+
+            
         if (this.state.dream.date) {
             let dreamArr = this.state.dream.date.split('-');
-            dreamDate = [dreamArr[1], dreamArr[2], dreamArr[0]].join('-')
+            // console.log(dateArr[dreamArr[1] - 1])
+            dreamDate = `${dateArr[dreamArr[1] - 1]} ${dreamArr[2]}, ${dreamArr[0]}`
         }
         if (this.state.dream.title) {
             dreamTitle = this.state.dream.title;
@@ -76,12 +82,12 @@ class SingleDream extends Component {
                         <p>{dreamContents}</p>
                     </div>
                 </div>
-            </div>        );
+            </div>);
     }
 }
- 
+
 function mapStateToProps(state) {
-    return({
+    return ({
         myDreams: state.myDreams
     })
 }

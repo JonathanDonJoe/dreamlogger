@@ -13,9 +13,13 @@ class DreamCard extends Component {
         // if (this.props.dream.peopleArr) {
         //     dreamPeople = this.props.dream.peopleArr.join(', ');
         // }
+        
+        const dateArr = ["January", "February", "March", "April", "May", "June", "July",
+        "August", "September", "October", "November", "December"]
+
         if (this.props.dream.date) {
             let dreamArr = this.props.dream.date.split('-');
-            dreamDate = [dreamArr[1], dreamArr[2], dreamArr[0]].join('-')
+            dreamDate = `${dateArr[dreamArr[1] - 1]} ${dreamArr[2]}, ${dreamArr[0]}`
         }
         if (this.props.dream.title) {
             dreamTitle = this.props.dream.title;

@@ -1,3 +1,5 @@
 .sidenav-item {
+    position: absolute;
     margin: 30px;
+    /* left: 50px; */
 }

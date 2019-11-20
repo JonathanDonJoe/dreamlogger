@@ -16,19 +16,19 @@ Dreamlogger is an app designed to help log and organize your nightly adventures.
 Technologies Used
 ---
 The following technologies were used to create this website:
-* JavaScript
+* Firebase (Deployment, NoSQL database, Authentication)
 * React
 * Redux
 * Node
+* JavaScript
 * HTML
 * CSS
-
-* Firebase (deployment, NoSQL database)
+* Materialize
 
 
 MVP
 ---
-Create a logging app for documenting and tracking dream state.  Allows recording of as much information as one can remember and stores entries for future analysis.
+Create a logging app for documenting and tracking dream state.  Stores entries in a database for future analysis.  Allows query of entries.
 
 Stretch Goals
 ---
@@ -42,4 +42,4 @@ Authors
 
 Screenshots
 ---
-Will be added at a later date
+Will be added at a future date

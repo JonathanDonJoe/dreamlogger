@@ -23,7 +23,8 @@ class SideNav extends Component {
                 <li key='0'><NavLink to="/home">Home</NavLink></li>,
                 <li key='1'><NavLink to="/entry">New Dream</NavLink></li>,
                 <li key='2'><NavLink to="/dreams">All Dreams</NavLink></li>,
-                <li key='3'><NavLink to='/login'>LogOut</NavLink></li>
+                <li key='3'><NavLink to='/stats'>Statistics</NavLink></li>,
+                <li key='4'><NavLink to='/login'>LogOut</NavLink></li>
             ]
         }
 

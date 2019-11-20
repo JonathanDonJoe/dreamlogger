@@ -7,12 +7,13 @@ import { bindActionCreators } from '../../../../Library/Caches/typescript/3.6/no
 import './App.css';
 import Home from './components/Home/Home';
 import CreateEntry from './components/CreateEntry/CreateEntry';
-import AllDreams from './components/AllDreams/AllDreams.js';
+import AllDreams from './components/AllDreams/AllDreams';
 import SingleDream from './components/SingleDream/SingleDream';
 import SideNav from './components/SideNav/SideNav';
 import LogIn from './components/LogIn/LogIn';
 import loginAction from './actions/loginAction';
 import setDreamAction from './actions/setDreamAction';
+import Statistics from './components/Statistics/Statistics';
 
 class App extends Component {
     state = {
@@ -95,6 +96,7 @@ class App extends Component {
                     <Route exact path='/entry' component={this.state.isSignedIn?CreateEntry:LogIn} />
                     <Route exact path='/dreams' component={this.state.isSignedIn?AllDreams:LogIn} />
                     <Route path='/dreams/:dreamId' component={this.state.isSignedIn?SingleDream:LogIn} />
+                    <Route path='/stats' component={this.state.isSignedIn?Statistics:LogIn} />
                 </div>
             </Router>
         );

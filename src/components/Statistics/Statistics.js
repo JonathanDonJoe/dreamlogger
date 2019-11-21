@@ -41,16 +41,22 @@ class Statistics extends Component {
     render() {
         // this.filterBy('Jon')
 
-        const tableData = []
-        for (let key in this.state.freqTable) {
-            tableData.push(
-                <tr>
-                    <td>{key}</td>
-                    <td>{this.state.freqTable[key]}</td>
-                </tr>
-                )
-        }
+        const rawFreqData = Object.keys(this.state.freqTable).map(key => [key, this.state.freqTable[key]])
+
+        // increasing
+        rawFreqData.sort((a, b) => b[1] - a[1])
         
+        // decreasing
+        // rawFreqData.sort((a, b) => a[1] - b[1])
+
+
+        const tableData = rawFreqData.map(item =>
+            <tr>
+                <td>{item[0]}</td>
+                <td>{item[1]}</td>
+            </tr>
+        )
+
         console.log(tableData)
 
         return (

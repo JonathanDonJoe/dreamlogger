@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 class Statistics extends Component {
     state = {
         // mostCommonPerson: 'None',
-        freqTable: {}
+        freqHist: {}
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -26,32 +26,30 @@ class Statistics extends Component {
     }
 
     buildFrequency = () => {
-        const newFreqTable = {};
+        const newFreqHist = {};
         this.props.myDreams.forEach(dream =>
             dream.peopleArr.forEach(person => {
-                newFreqTable[person] = person in newFreqTable ? newFreqTable[person] + 1 : 1
+                newFreqHist[person] = person in newFreqHist ? newFreqHist[person] + 1 : 1
             })
         )
-        // // console.log(newFreqTable)
+        // // console.log(newFreqHist)
         this.setState({
-            freqTable: newFreqTable
-        }, () => console.log(this.state))
+            freqHist: newFreqHist
+        })
     }
 
-    render() {
-        // this.filterBy('Jon')
-
-        const rawFreqData = Object.keys(this.state.freqTable).map(key => [key, this.state.freqTable[key]])
+    buildFreqTable = () => {
+        const rawFreqData = Object.keys(this.state.freqHist).map(key => [key, this.state.freqHist[key]])
 
         // increasing
         rawFreqData.sort((a, b) => b[1] - a[1])
-        
+
         // decreasing
         // rawFreqData.sort((a, b) => a[1] - b[1])
 
 
         const tableData = rawFreqData.map(item =>
-            <tr>
+            <tr key={item[0]}>
                 <td>{item[0]}</td>
                 <td>{item[1]}</td>
             </tr>
@@ -59,21 +57,35 @@ class Statistics extends Component {
 
         console.log(tableData)
 
+        const fullData =
+            <table className='highlight centered'>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Frequency</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {tableData}
+                </tbody>
+            </table>
+
+        return fullData
+    }
+
+    render() {
+        // this.filterBy('Jon')
+
+        let tableHolder = ''
+        
+        tableHolder = this.buildFreqTable()
+
+
         return (
             <div className='container'>
                 <h1>Statistics</h1>
-                <table className='highlight centered'>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Frequency</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {tableData}
-                    </tbody>
-                </table>
+                {tableHolder}
             </div>
         );
     }

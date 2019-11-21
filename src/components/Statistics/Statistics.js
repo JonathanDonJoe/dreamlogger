@@ -7,9 +7,18 @@ class Statistics extends Component {
         freqTable: {}
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.myDreams !== this.props.myDreams) {
+            this.buildFrequency()
+        }
+    }
 
-    checkFrequency = str => {
-        if(this.props.myDreams.length) {
+    componentDidMount() {
+        this.buildFrequency()
+    }
+
+    filterBy = (str) => {
+        if (this.props.myDreams.length) {
             console.log(this.props.myDreams)
             const containsString = this.props.myDreams.filter(dream => dream.peopleArr.includes(str))
             console.log(containsString)
@@ -18,22 +27,31 @@ class Statistics extends Component {
 
     buildFrequency = () => {
         const newFreqTable = {};
-        this.props.myDreams.forEach( dream => 
-            dream.peopleArr.forEach( person => {
-                if (person in newFreqTable) {
-                    newFreqTable[person] += 1
-                } else {
-                    newFreqTable[person] = 1
-                }
+        this.props.myDreams.forEach(dream =>
+            dream.peopleArr.forEach(person => {
+                newFreqTable[person] = person in newFreqTable ? newFreqTable[person] + 1 : 1
             })
         )
-        console.log(newFreqTable)
+        // // console.log(newFreqTable)
+        this.setState({
+            freqTable: newFreqTable
+        }, () => console.log(this.state))
     }
 
     render() {
-        this.checkFrequency('Jon')
-        // this.buildFrequency()
+        // this.filterBy('Jon')
 
+        const tableData = []
+        for (let key in this.state.freqTable) {
+            tableData.push(
+                <tr>
+                    <td>{key}</td>
+                    <td>{this.state.freqTable[key]}</td>
+                </tr>
+                )
+        }
+        
+        console.log(tableData)
 
         return (
             <div className='container'>
@@ -47,18 +65,7 @@ class Statistics extends Component {
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td>Alvin</td>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <td>Alan</td>
-                            <td>3</td>
-                        </tr>
-                        <tr>
-                            <td>Jonathan</td>
-                            <td>8</td>
-                        </tr>
+                        {tableData}
                     </tbody>
                 </table>
             </div>
@@ -67,7 +74,7 @@ class Statistics extends Component {
 }
 
 function mapStateToProps(state) {
-    return({
+    return ({
         auth: state.auth,
         myDreams: state.myDreams
     })

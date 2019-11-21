@@ -33,7 +33,7 @@ class LogIn extends Component {
         let loginItems = this.props.auth.isSignedIn ? 
             (<span>
                 {/* <h1>signedIn</h1>  */}
-                <h1>Welcome {firebase.auth().currentUser.displayName}</h1>
+                <h1>Logged in as {firebase.auth().currentUser.displayName}</h1>
                 {/* <img id='profile-pic' alt='profile pic' src={firebase.auth().currentUser.photoURL}></img> */}
                 <br/>
                 <button onClick={this.signOut} className='btn red lighten-1'>Sign Out</button>

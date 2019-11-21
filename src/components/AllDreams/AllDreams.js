@@ -54,7 +54,7 @@ class AllDreams extends Component {
         //     console.log(firebase.auth().currentUser.uid)
         // }
 
-        let msg = <h1>Every Entry Here</h1>
+        let msg = <h1>Dreams</h1>
 
         // console.log(this.state.dreams)
         let dreamCards = this.props.myDreams.map((dream, i) => <DreamCard dream={dream} dreamId={i} key={i} />)

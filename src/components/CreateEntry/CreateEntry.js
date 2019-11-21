@@ -143,7 +143,7 @@ class CreateEntry extends Component {
         return (
             <div className="container lighten-2 create-entry-container">
                 {msgHeader}
-                <h2>Submit Dream Entry</h2>
+                <h2>Dream Entry</h2>
                 <form id="entry-form" onSubmit={this.onSubmit}>
                     <div className="row">
                         <div className="input-field col s8 offset-s2">

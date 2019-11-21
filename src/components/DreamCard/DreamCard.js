@@ -30,7 +30,7 @@ class DreamCard extends Component {
         return (
             <Link to={`/dreams/${this.props.dream.dreamKey}`} >
             <div className="col s12 m6 l4">
-              <div className="card grey darken-1">
+              <div className="card waves-effect waves-light">
                 <div className="card-content white-text">
                   <span className="card-title">{dreamTitle}</span>
                   <span className="card-date">{dreamDate}</span>

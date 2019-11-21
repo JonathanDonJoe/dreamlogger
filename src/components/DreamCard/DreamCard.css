@@ -21,3 +21,12 @@
     height: 3em;
     /* max-height: 3em; */
 }
+
+.card {
+    background-color: #616161;
+    width: 100%;
+}
+
+.card:hover {
+    background-color: #424242;
+}

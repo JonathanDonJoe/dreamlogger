@@ -3,3 +3,11 @@
     margin: 30px;
     /* left: 50px; */
 }
+
+.my-side-nav {
+    background-color: #9197AE;
+}
+
+.my-side-nav:hover {
+    background-color: rgb(200, 205, 222);
+}

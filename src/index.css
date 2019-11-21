@@ -24,11 +24,21 @@ code {
 html {
   min-height: 100%;
 
-  background:  #FFE5BB;
-  /* fallback for old browsers */
+  /* background:  #FFE5BB;
   background: -webkit-linear-gradient(45.34deg, #119DA4 5.66%, #9BC7B2 31.53%, #FFE5BB 50.01%, #FFBE99 72.18%, #FF886A 94.35%);
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(45.34deg, #119DA4 5.66%, #9BC7B2 31.53%, #FFE5BB 50.01%, #FFBE99 72.18%, #FF886A 94.35%);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(45.34deg, #119DA4 5.66%, #9BC7B2 31.53%, #FFE5BB 50.01%, #FFBE99 72.18%, #FF886A 94.35%); */
+
+  /* background: #ACB4E7;
+  background: -webkit-linear-gradient(45deg, #B1E0B0, #ACB4E7);
+  background: linear-gradient(45deg, #B1E0B0, #ACB4E7); */
+
+  /* background: #43C6AC;
+  background: -webkit-linear-gradient(45deg, #191654, #43C6AC);
+  background: linear-gradient(45deg, #191654, #43C6AC); */
+
+  background:  #EC38BC;
+  background: -webkit-linear-gradient(45.34deg, #355C7D 5.66%, #6C5B7B 49.09%, #C06C84 93.43%);
+  background: linear-gradient(45.34deg, #355C7D 5.66%, #6C5B7B 49.09%, #C06C84 93.43%);
+
 
 }

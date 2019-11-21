@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 
 class Statistics extends Component {
     state = {
-        // mostCommonPerson: 'None'
+        // mostCommonPerson: 'None',
+        freqTable: {}
     }
 
 
@@ -15,10 +16,23 @@ class Statistics extends Component {
         }
     }
 
+    buildFrequency = () => {
+        const newFreqTable = {};
+        this.props.myDreams.forEach( dream => 
+            dream.peopleArr.forEach( person => {
+                if (person in newFreqTable) {
+                    newFreqTable[person] += 1
+                } else {
+                    newFreqTable[person] = 1
+                }
+            })
+        )
+        console.log(newFreqTable)
+    }
 
     render() {
         this.checkFrequency('Jon')
-
+        // this.buildFrequency()
 
 
         return (

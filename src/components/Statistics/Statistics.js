@@ -82,32 +82,45 @@ class Statistics extends Component {
     buildGraph = () => {
         var ctx = document.getElementById('myChart')
         if (ctx) {
-
+            const rawFreqData = Object.keys(this.state.freqHist).map(key => [key, this.state.freqHist[key]])
             var ctx2 = document.getElementById('myChart').getContext('2d');
             // var myChart = 
+
+            const barColors = Object.keys(this.state.freqHist).map( item => {
+                return `rgba(${Math.random(0,255) * 255}, ${Math.random(0,255) * 255}, ${Math.random(0,255) * 255}, 0.2)`
+            })
+            const barBorderColors = barColors.map( item => `${item.slice(0, item.length-5)} 1)`)
+
+            console.log(barColors)
+            console.log(barBorderColors)
+
             new Chart(ctx2, {
                 type: 'bar',
                 data: {
-                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    labels: rawFreqData.map( item => item[0]),
                     datasets: [{
                         label: '# of Votes',
-                        data: [12, 19, 3, 5, 2, 3],
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
+                        data: rawFreqData.map( item => item[1]),
+                        backgroundColor: barColors
+                        // [
+                        //     'rgba(255, 99, 132, 0.2)',
+                        //     'rgba(54, 162, 235, 0.2)',
+                        //     'rgba(255, 206, 86, 0.2)',
+                        //     'rgba(75, 192, 192, 0.2)',
+                        //     'rgba(153, 102, 255, 0.2)',
+                        //     'rgba(255, 159, 64, 0.2)'
+                        // ]
+                        ,
+                        borderColor: barBorderColors
+                        // [
+                        //     'rgba(255, 99, 132, 1)',
+                        //     'rgba(54, 162, 235, 1)',
+                        //     'rgba(255, 206, 86, 1)',
+                        //     'rgba(75, 192, 192, 1)',
+                        //     'rgba(153, 102, 255, 1)',
+                        //     'rgba(255, 159, 64, 1)'
+                        // ]
+                        ,
                         borderWidth: 1
                     }]
                 },
@@ -132,7 +145,7 @@ class Statistics extends Component {
 
         tableHolder = this.buildFreqTable()
         graphHolder = <canvas id="myChart" width="400" height="400"></canvas>
-        
+
 
         return (
             <div className='container'>

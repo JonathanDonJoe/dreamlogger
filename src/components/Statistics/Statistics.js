@@ -89,17 +89,17 @@ class Statistics extends Component {
             const barColors = Object.keys(this.state.freqHist).map( item => {
                 return `rgba(${Math.random(0,255) * 255}, ${Math.random(0,255) * 255}, ${Math.random(0,255) * 255}, 0.2)`
             })
-            const barBorderColors = barColors.map( item => `${item.slice(0, item.length-5)} 1)`)
+            // const barBorderColors = barColors.map( item => `${item.slice(0, item.length-5)} 1)`)
 
             console.log(barColors)
-            console.log(barBorderColors)
+            // console.log(barBorderColors)
 
             new Chart(ctx2, {
                 type: 'bar',
                 data: {
                     labels: rawFreqData.map( item => item[0]),
                     datasets: [{
-                        label: '# of Votes',
+                        label: 'Frequency',
                         data: rawFreqData.map( item => item[1]),
                         backgroundColor: barColors
                         // [
@@ -111,7 +111,8 @@ class Statistics extends Component {
                         //     'rgba(255, 159, 64, 0.2)'
                         // ]
                         ,
-                        borderColor: barBorderColors
+                        borderColor: "rgba(59.188817995380944, 231.68301778952002, 94.80472761770287, 1)"
+                        // barBorderColors
                         // [
                         //     'rgba(255, 99, 132, 1)',
                         //     'rgba(54, 162, 235, 1)',
@@ -121,7 +122,9 @@ class Statistics extends Component {
                         //     'rgba(255, 159, 64, 1)'
                         // ]
                         ,
-                        borderWidth: 1
+                        borderWidth: 1,
+                        hoverBackgroundColor: "rgba(0, 0, 255, 0.2)",
+                        hoverBorderColor: "rgba(0, 0, 255, 1)"
                     }]
                 },
                 options: {
@@ -130,7 +133,22 @@ class Statistics extends Component {
                             ticks: {
                                 beginAtZero: true
                             }
-                        }]
+                        }],
+                        // scaleLabel: {
+                        //     display: true,
+                        //     fontColor: 'black',
+                        //     labelString: 'Hello there'
+                        // },
+                        gridLines: {
+                            display: false
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Most frequent people', 
+                        fontColor: 'black',
+                        fontSize: 40,
+                        fontFamily: 'Prata'
                     }
                 }
             })

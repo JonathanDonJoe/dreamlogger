@@ -99,7 +99,7 @@ class Statistics extends Component {
                 data: {
                     labels: rawFreqData.map( item => item[0]),
                     datasets: [{
-                        label: 'Frequency',
+                        label: 'Appearances',
                         data: rawFreqData.map( item => item[1]),
                         backgroundColor: barColors
                         // [
@@ -131,17 +131,41 @@ class Statistics extends Component {
                     scales: {
                         yAxes: [{
                             ticks: {
-                                beginAtZero: true
-                            }
+                                beginAtZero: true,
+                                fontColor: 'black', 
+                                // stepSize: 1,
+                                precision: 0,
+                                // maxTicksLimit: 5
+                            },
+                            gridLines: {
+                                // color: 'gray',
+                                display: false
+                            },
+                            scaleLabel: {
+                                display: true,
+                                fontColor: 'black',
+                                fontSize: 30,
+                                fontFamily:'Prata',
+                                labelString: '# of Dreams'
+                            },
                         }],
-                        // scaleLabel: {
-                        //     display: true,
-                        //     fontColor: 'black',
-                        //     labelString: 'Hello there'
-                        // },
-                        gridLines: {
-                            display: false
-                        }
+                        xAxes: [{
+                            ticks: {
+                                fontColor: 'black'
+                            },
+                            gridLines: {
+                                // color: 'gray',
+                                display: false
+                            },
+                            scaleLabel: {
+                                display: true,
+                                fontColor: 'black',
+                                fontSize: 30,
+                                fontFamily:'Prata',
+                                labelString: 'People'
+                            },
+                        }],
+                        
                     },
                     title: {
                         display: true,
@@ -149,6 +173,9 @@ class Statistics extends Component {
                         fontColor: 'black',
                         fontSize: 40,
                         fontFamily: 'Prata'
+                    },
+                    legend: {
+                        display: false
                     }
                 }
             })

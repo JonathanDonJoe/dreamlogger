@@ -1,4 +1,15 @@
 #myChart {
-    height: 80% !important;
-    width: 80% !important;
+    /* height: 80% !important;
+    width: 80% !important; */
+    /* max-width: 1000px;
+    height: 100%; */
+}
+
+.canvas-container {
+    border: 2px black solid;
+    margin: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

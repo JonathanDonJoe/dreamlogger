@@ -99,7 +99,7 @@ class Statistics extends Component {
                 data: {
                     labels: rawFreqData.map( item => item[0]),
                     datasets: [{
-                        label: 'Appearances',
+                        label: 'Dreams',
                         data: rawFreqData.map( item => item[1]),
                         backgroundColor: barColors
                         // [
@@ -133,6 +133,7 @@ class Statistics extends Component {
                             ticks: {
                                 beginAtZero: true,
                                 fontColor: 'black', 
+                                fontSize: 20,
                                 // stepSize: 1,
                                 precision: 0,
                                 // maxTicksLimit: 5
@@ -151,7 +152,8 @@ class Statistics extends Component {
                         }],
                         xAxes: [{
                             ticks: {
-                                fontColor: 'black'
+                                fontColor: 'black',
+                                // sampleSize: 8,
                             },
                             gridLines: {
                                 // color: 'gray',
@@ -176,7 +178,10 @@ class Statistics extends Component {
                     },
                     legend: {
                         display: false
-                    }
+                    },
+                    // layout: {
+                    //     padding: 100
+                    // }
                 }
             })
         };
@@ -189,7 +194,10 @@ class Statistics extends Component {
         let graphHolder = <div></div>
 
         tableHolder = this.buildFreqTable()
-        graphHolder = <canvas id="myChart" width="400" height="400"></canvas>
+        graphHolder = 
+            <div className='canvas-container'>
+                <canvas id="myChart" width="400" height="400"></canvas>
+            </div>
 
 
         return (

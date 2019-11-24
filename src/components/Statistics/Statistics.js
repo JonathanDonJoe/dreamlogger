@@ -133,6 +133,7 @@ class Statistics extends Component {
                             ticks: {
                                 beginAtZero: true,
                                 fontColor: 'black', 
+                                fontFamily: 'Montserrat',
                                 fontSize: 20,
                                 // stepSize: 1,
                                 precision: 0,
@@ -153,6 +154,7 @@ class Statistics extends Component {
                         xAxes: [{
                             ticks: {
                                 fontColor: 'black',
+                                fontFamily: 'Montserrat',
                                 // sampleSize: 8,
                             },
                             gridLines: {

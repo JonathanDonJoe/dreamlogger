@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Chart } from 'chart.js';
 
-import './Statistics.css'
+import './Statistics.css';
+import FreqGraph from '../FreqGraph/FreqGraph';
 
 class Statistics extends Component {
     state = {
@@ -13,13 +13,13 @@ class Statistics extends Component {
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.myDreams !== this.props.myDreams) {
             this.buildFrequency();
-            this.buildGraph();
+            // this.buildGraph();
         }
     }
 
     componentDidMount() {
         this.buildFrequency()
-        this.buildGraph()
+        // this.buildGraph()
     }
 
     filterBy = (str) => {
@@ -79,134 +79,38 @@ class Statistics extends Component {
         return fullData
     }
 
-    buildGraph = () => {
-        var ctx = document.getElementById('myChart')
-        if (ctx) {
-            const rawFreqData = Object.keys(this.state.freqHist).map(key => [key, this.state.freqHist[key]])
-            var ctx2 = document.getElementById('myChart').getContext('2d');
-            // var myChart = 
-
-            const barColors = Object.keys(this.state.freqHist).map( item => {
-                return `rgba(${Math.random(0,255) * 255}, ${Math.random(0,255) * 255}, ${Math.random(0,255) * 255}, 0.2)`
-            })
-            // const barBorderColors = barColors.map( item => `${item.slice(0, item.length-5)} 1)`)
-
-            console.log(barColors)
-            // console.log(barBorderColors)
-
-            new Chart(ctx2, {
-                type: 'bar',
-                data: {
-                    labels: rawFreqData.map( item => item[0]),
-                    datasets: [{
-                        label: 'Dreams',
-                        data: rawFreqData.map( item => item[1]),
-                        backgroundColor: barColors
-                        // [
-                        //     'rgba(255, 99, 132, 0.2)',
-                        //     'rgba(54, 162, 235, 0.2)',
-                        //     'rgba(255, 206, 86, 0.2)',
-                        //     'rgba(75, 192, 192, 0.2)',
-                        //     'rgba(153, 102, 255, 0.2)',
-                        //     'rgba(255, 159, 64, 0.2)'
-                        // ]
-                        ,
-                        borderColor: "rgba(59.188817995380944, 231.68301778952002, 94.80472761770287, 1)"
-                        // barBorderColors
-                        // [
-                        //     'rgba(255, 99, 132, 1)',
-                        //     'rgba(54, 162, 235, 1)',
-                        //     'rgba(255, 206, 86, 1)',
-                        //     'rgba(75, 192, 192, 1)',
-                        //     'rgba(153, 102, 255, 1)',
-                        //     'rgba(255, 159, 64, 1)'
-                        // ]
-                        ,
-                        borderWidth: 1,
-                        hoverBackgroundColor: "rgba(0, 0, 255, 0.2)",
-                        hoverBorderColor: "rgba(0, 0, 255, 1)"
-                    }]
-                },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true,
-                                fontColor: 'black', 
-                                fontFamily: 'Montserrat',
-                                fontSize: 20,
-                                // stepSize: 1,
-                                precision: 0,
-                                // maxTicksLimit: 5
-                            },
-                            gridLines: {
-                                // color: 'gray',
-                                display: false
-                            },
-                            scaleLabel: {
-                                display: true,
-                                fontColor: 'black',
-                                fontSize: 30,
-                                fontFamily:'Prata',
-                                labelString: '# of Dreams'
-                            },
-                        }],
-                        xAxes: [{
-                            ticks: {
-                                fontColor: 'black',
-                                fontFamily: 'Montserrat',
-                                // sampleSize: 8,
-                            },
-                            gridLines: {
-                                // color: 'gray',
-                                display: false
-                            },
-                            scaleLabel: {
-                                display: true,
-                                fontColor: 'black',
-                                fontSize: 30,
-                                fontFamily:'Prata',
-                                labelString: 'People'
-                            },
-                        }],
-                        
-                    },
-                    title: {
-                        display: true,
-                        text: 'Most frequent people', 
-                        fontColor: 'black',
-                        fontSize: 40,
-                        fontFamily: 'Prata'
-                    },
-                    legend: {
-                        display: false
-                    },
-                    // layout: {
-                    //     padding: 100
-                    // }
-                }
-            })
-        };
+    displayGraph = () => {
+        this.setState({
+            showGraph: true
+        })
     }
 
+    
+
     render() {
+        console.log(this.state)
         // this.filterBy('Jon')
 
         let tableHolder = <div></div>
         let graphHolder = <div></div>
 
         tableHolder = this.buildFreqTable()
-        graphHolder = 
-            <div className='canvas-container'>
-                <canvas id="myChart" width="400" height="400"></canvas>
-            </div>
+        // if (this.state.showGraph) {
+            graphHolder = <FreqGraph freqHist={this.state.freqHist} showGraph={this.state.showGraph} />
+        // }
 
+
+
+    
+        console.log(graphHolder)
 
         return (
             <div className='container'>
                 <h1>Statistics</h1>
+                <button type='button' onClick={this.displayGraph} className='btn red lighten-1' >Show Graph</button>
                 {tableHolder}
                 {graphHolder}
+                {/* <FreqGraph freqHist={this.state.freqHist} /> */}
             </div>
         );
     }

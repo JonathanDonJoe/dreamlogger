@@ -47,40 +47,48 @@ class SingleDream extends Component {
 
     render() {
 
-        // console.log(this.state)
+        console.log(this.state)
         let dreamTitle = 'Untitled'
         let dreamDate = 'No date'
         let dreamContents = 'No Contents'
         let dreamPeople = 'none';
 
-        if (this.state.dream.peopleArr) {
-            dreamPeople = this.state.dream.peopleArr.join(', ');
+        if (this.state.dream) {
+            if (this.state.dream.peopleArr) {
+                dreamPeople = this.state.dream.peopleArr.join(', ');
+            }
+
+            const dateArr = ["January", "February", "March", "April", "May", "June", "July",
+                "August", "September", "October", "November", "December"]
+
+
+            if (this.state.dream.date) {
+                let dreamArr = this.state.dream.date.split('-');
+                // console.log(dateArr[dreamArr[1] - 1])
+                dreamDate = `${dateArr[dreamArr[1] - 1]} ${dreamArr[2]}, ${dreamArr[0]}`
+            }
+            if (this.state.dream.title) {
+                dreamTitle = this.state.dream.title;
+            }
+            if (this.state.dream.contents) {
+                dreamContents = this.state.dream.contents;
+            }
         }
 
-        const dateArr = ["January", "February", "March", "April", "May", "June", "July",
-            "August", "September", "October", "November", "December"]
-
-            
-        if (this.state.dream.date) {
-            let dreamArr = this.state.dream.date.split('-');
-            // console.log(dateArr[dreamArr[1] - 1])
-            dreamDate = `${dateArr[dreamArr[1] - 1]} ${dreamArr[2]}, ${dreamArr[0]}`
-        }
-        if (this.state.dream.title) {
-            dreamTitle = this.state.dream.title;
-        }
-        if (this.state.dream.contents) {
-            dreamContents = this.state.dream.contents;
-        }
+        let theDream = this.state.dream
+            ? 
+                <div className='row'>
+                    <h1>{dreamTitle}</h1>
+                    <h5>{dreamDate}</h5>
+                    <h5>People: {dreamPeople}</h5>
+                    <p>{dreamContents}</p>
+                </div>
+            : 
+                <h1>Dream not found</h1>
         return (
             <div>
                 <div className='container single-dream-container'>
-                    <div className='row'>
-                        <h1>{dreamTitle}</h1>
-                        <h5>{dreamDate}</h5>
-                        <h5>People: {dreamPeople}</h5>
-                        <p>{dreamContents}</p>
-                    </div>
+                {theDream}
                 </div>
             </div>);
     }

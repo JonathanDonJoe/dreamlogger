@@ -39,7 +39,7 @@ class FreqGraph extends Component {
             })
             // const barBorderColors = barColors.map( item => `${item.slice(0, item.length-5)} 1)`)
 
-            console.log(barColors)
+            // console.log(barColors)
             // console.log(barBorderColors)
 
             new Chart(ctx2, {

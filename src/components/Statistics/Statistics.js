@@ -82,7 +82,7 @@ class Statistics extends Component {
 
     displayGraph = () => {
         this.setState({
-            showGraph: true
+            showGraph: this.state.showGraph ? false : true
         })
     }
 
@@ -107,8 +107,8 @@ class Statistics extends Component {
             <div className='container'>
                 <h1>Statistics</h1>
                 <button type='button' onClick={this.displayGraph} className='btn red lighten-1' >Show Graph</button>
-                {tableHolder}
                 {graphHolder}
+                {tableHolder}
             </div>
         );
     }

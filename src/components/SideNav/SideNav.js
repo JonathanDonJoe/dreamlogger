@@ -14,13 +14,13 @@ class SideNav extends Component {
         // console.log(this.props.auth.isSignedIn)
 
         let links =  [
-            <li key='0'><NavLink to="/home">Home</NavLink></li>,
+            <li key='0'><NavLink to="/">Home</NavLink></li>,
             <li key='1'><NavLink to='/login'>LogIn</NavLink></li>
         ]
         
         if(this.props.auth.isSignedIn) {
             links = [
-                <li key='0'><NavLink to="/home">Home</NavLink></li>,
+                <li key='0'><NavLink to="/">Home</NavLink></li>,
                 <li key='1'><NavLink to="/entry">New Dream</NavLink></li>,
                 <li key='2'><NavLink to="/dreams">All Dreams</NavLink></li>,
                 <li key='3'><NavLink to='/stats'>Statistics</NavLink></li>,

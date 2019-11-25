@@ -29,7 +29,7 @@ class LogIn extends Component {
     }
 
     render() { 
-        console.log(this.props)
+        // console.log(this.props)
         let loginItems = this.props.auth.isSignedIn ? 
             (<span>
                 {/* <h1>signedIn</h1>  */}
@@ -43,7 +43,7 @@ class LogIn extends Component {
             uiConfig={this.uiConfig} 
             firebaseAuth={firebase.auth()}
             />
-        console.log(loginItems)
+        // console.log(loginItems)
         return (
             loginItems
         );

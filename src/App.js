@@ -25,7 +25,7 @@ class App extends Component {
         if (prevProps.auth !== this.props.auth) {
             // console.log(this.props.auth.isSignedIn)
             if (this.props.auth.isSignedIn) {
-                console.log('am signed in')
+                // console.log('am signed in')
                 this.getDreams()
             }
         }
@@ -33,14 +33,14 @@ class App extends Component {
 
     componentDidMount() {
         firebase.auth().onAuthStateChanged( user => {
-            console.log(user)
+            // console.log(user)
             this.setState({
                 isSignedIn: !!user
             }, () => {
                 this.props.login({
                     isSignedIn:this.state.isSignedIn
                 })
-                console.log('mount')
+                // console.log('mount')
                 if(this.state.isSignedIn){
                     this.getDreams()
                 }
@@ -85,8 +85,8 @@ class App extends Component {
     }
 
     render() {
-        console.log(this.state.isSignedIn)
-        console.log(this.props)
+        // console.log(this.state.isSignedIn)
+        // console.log(this.props)
         return (
             <Router>
                 <div className="App">

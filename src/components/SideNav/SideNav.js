@@ -11,7 +11,7 @@ class SideNav extends Component {
         window.M.Sidenav.init(elems, {});
     }
     render() {
-        console.log(this.props.auth.isSignedIn)
+        // console.log(this.props.auth.isSignedIn)
 
         let links =  [
             <li key='0'><NavLink to="/home">Home</NavLink></li>,

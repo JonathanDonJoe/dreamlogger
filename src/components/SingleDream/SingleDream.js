@@ -14,11 +14,11 @@ class SingleDream extends Component {
 
     componentDidMount() {
         // This runs before this.props.myDreams is updated by the store
-        console.log('componentDidMount')
-        console.log(this.props)
+        // console.log('componentDidMount')
+        // console.log(this.props)
         if (this.props.myDreams.length) {
             let dreamIndex = Object.keys(this.props.myDreams).find(key => this.props.myDreams[key].dreamKey === this.props.match.params.dreamId)
-            console.log('updated')
+            // console.log('updated')
             this.setState({
                 dream: this.props.myDreams[dreamIndex]
             })

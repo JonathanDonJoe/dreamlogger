@@ -21,10 +21,10 @@ class CreateEntry extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        console.log('submit ran')
+        // console.log('submit ran')
         // console.log(firebase.auth().currentUser.getIdToken())
         if (this.state.people) {
-            console.log('new person submitted')
+            // console.log('new person submitted')
             if (!this.state.peopleArr.includes(this.state.people)) {
 
                 const newPeopleArr = [...this.state.peopleArr]
@@ -37,7 +37,7 @@ class CreateEntry extends Component {
                     })
                 })
             } else {
-                console.log('repeated name')
+                // console.log('repeated name')
                 this.setState({
                     msg: 'Tried to add duplicate person',
                     people: ''
@@ -50,7 +50,7 @@ class CreateEntry extends Component {
                 })
             }
         } else {
-            console.log('Actual submit')
+            // console.log('Actual submit')
             // const rootRef = firebase.database().ref().child('Hi');
             // rootRef.on('value', snap => {
             //     // console.log(snap.val())
@@ -64,7 +64,7 @@ class CreateEntry extends Component {
 
     clearForm = (e) => {
         e.preventDefault()
-        console.log('clear ran')
+        // console.log('clear ran')
         this.setState({
             title: '',
             people: '',
@@ -111,9 +111,9 @@ class CreateEntry extends Component {
         // e.preventDefault();
         // let personName = e.target.parentNode.dataset.name
         let personName = e.target.dataset.name
-        console.log(personName)
+        // console.log(personName)
         const newPeopleArr = [...this.state.peopleArr].filter(person => person !== personName)
-        console.log(newPeopleArr)
+        // console.log(newPeopleArr)
         this.setState({
             peopleArr: newPeopleArr
         })

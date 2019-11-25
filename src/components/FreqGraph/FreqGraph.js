@@ -5,21 +5,34 @@ import { Chart } from 'chart.js';
 
 
 class FreqGraph extends Component {
-    state = {}
+    state = {
 
-    componentDidUpdate(prevProps, prevState) {
-        if (prevProps.freqHist !== this.props.freqHist) {
-            this.buildGraph();
-            // this.buildGraph();
-        }
+    }
+
+    // componentDidUpdate(prevProps, prevState) {
+    //     console.log('componentDidUpdate')
+    //     if (
+    //         // prevProps.freqHist !== this.props.freqHist 
+    //         // && 
+    //         prevProps.showGraph !== this.props.showGraph
+    //         ) {
+    //         console.log('componentDidUpdate for real')
+    //         this.buildGraph();
+    //         // this.buildGraph();
+    //     }
+    // }
+
+    componentDidMount() {
+        this.buildGraph()
     }
 
     buildGraph = () => {
         var ctx = document.getElementById('myChart')
+        // console.log('ran buildGraph')
         if (ctx) {
+            // console.log('found graph')
             const rawFreqData = Object.keys(this.props.freqHist).map(key => [key, this.props.freqHist[key]])
             var ctx2 = document.getElementById('myChart').getContext('2d');
-            // var myChart = 
 
             const barColors = Object.keys(this.props.freqHist).map(item => {
                 return `rgba(${Math.random(0, 255) * 255}, ${Math.random(0, 255) * 255}, ${Math.random(0, 255) * 255}, 0.2)`
@@ -125,7 +138,12 @@ class FreqGraph extends Component {
     }
 
     render() {
-        console.log(this.props.freqHist)
+        // console.log('rendered FreqGraph')
+        // console.log(this.props)
+
+        // if(this.props.showGraph) {
+        //     this.buildGraph()
+        // }
         return (
             <div className='canvas-container'>
                 <canvas id="myChart" width="400" height="400"></canvas>

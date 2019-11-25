@@ -7,7 +7,8 @@ import FreqGraph from '../FreqGraph/FreqGraph';
 class Statistics extends Component {
     state = {
         // mostCommonPerson: 'None',
-        freqHist: {}
+        freqHist: {},
+        showGraph: false
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -24,9 +25,9 @@ class Statistics extends Component {
 
     filterBy = (str) => {
         if (this.props.myDreams.length) {
-            console.log(this.props.myDreams)
+            // console.log(this.props.myDreams)
             const containsString = this.props.myDreams.filter(dream => dream.peopleArr.includes(str))
-            console.log(containsString)
+            // console.log(containsString)
         }
     }
 
@@ -60,7 +61,7 @@ class Statistics extends Component {
             </tr>
         )
 
-        console.log(tableData)
+        // console.log(tableData)
 
         const fullData =
             <table className='highlight centered'>
@@ -88,21 +89,19 @@ class Statistics extends Component {
     
 
     render() {
-        console.log(this.state)
+        // console.log('rendered Stats')
+        // console.log(this.state)
         // this.filterBy('Jon')
 
         let tableHolder = <div></div>
-        let graphHolder = <div></div>
+        let graphHolder = this.state.showGraph 
+            ? <FreqGraph freqHist={this.state.freqHist} showGraph={this.state.showGraph} /> 
+            : <div></div>
 
         tableHolder = this.buildFreqTable()
         // if (this.state.showGraph) {
-            graphHolder = <FreqGraph freqHist={this.state.freqHist} showGraph={this.state.showGraph} />
+        //     graphHolder = <FreqGraph freqHist={this.state.freqHist} showGraph={this.state.showGraph} />
         // }
-
-
-
-    
-        console.log(graphHolder)
 
         return (
             <div className='container'>
@@ -110,7 +109,6 @@ class Statistics extends Component {
                 <button type='button' onClick={this.displayGraph} className='btn red lighten-1' >Show Graph</button>
                 {tableHolder}
                 {graphHolder}
-                {/* <FreqGraph freqHist={this.state.freqHist} /> */}
             </div>
         );
     }

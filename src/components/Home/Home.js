@@ -6,7 +6,7 @@ class Home extends Component {
     // }
     render() { 
         return (
-            <h1>Welcome to DreamLogger</h1>
+            <h1>Welcome</h1>
         );
     }
 }

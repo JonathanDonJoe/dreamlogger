@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -39,6 +43,7 @@ html {
   background:  #EC38BC;
   background: -webkit-linear-gradient(45.34deg, #355C7D 5.66%, #6C5B7B 49.09%, #C06C84 93.43%);
   background: linear-gradient(45.34deg, #355C7D 5.66%, #6C5B7B 49.09%, #C06C84 93.43%);
-
+  /* background-image: url('/clouds.jpg');
+  background-size: 100%; */
 
 }

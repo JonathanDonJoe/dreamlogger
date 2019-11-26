@@ -86,7 +86,7 @@ class Statistics extends Component {
         })
     }
 
-    
+
 
     render() {
         // console.log('rendered Stats')
@@ -94,8 +94,8 @@ class Statistics extends Component {
         // this.filterBy('Jon')
 
         let tableHolder = <div></div>
-        let graphHolder = this.state.showGraph 
-            ? <FreqGraph freqHist={this.state.freqHist} showGraph={this.state.showGraph} /> 
+        let graphHolder = this.state.showGraph
+            ? <FreqGraph freqHist={this.state.freqHist} showGraph={this.state.showGraph} />
             : <div></div>
 
         tableHolder = this.buildFreqTable()
@@ -106,7 +106,13 @@ class Statistics extends Component {
         return (
             <div className='container'>
                 <h1>Statistics</h1>
-                <button type='button' onClick={this.displayGraph} className='btn red lighten-1' >Show Graph</button>
+                <button type='button' onClick={this.displayGraph} className='btn red lighten-1' >
+                    {
+                        this.state.showGraph
+                            ? 'Hide Graph'
+                            : 'Show Graph'
+                    }
+                </button>
                 {graphHolder}
                 {tableHolder}
             </div>

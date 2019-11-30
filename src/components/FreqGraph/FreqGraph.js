@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Chart } from 'chart.js';
 
-// import './FreqGraph.css'
+import './FreqGraph.css'
 
 
 class FreqGraph extends Component {

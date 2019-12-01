@@ -172,7 +172,7 @@ class CreateEntry extends Component {
                         </div>
                     </div>
                     <div className='buttons-container'>
-                        <button type='submit' className='btn red lighten-1' >Submit</button>
+                        <button type='submit' className='btn red lighten-1' >{this.state.people ? 'Add Person' : 'Submit'}</button>
                         <button type='button' onClick={this.clearForm} className='btn red lighten-1' >Clear</button>
                     </div>
                 </form>

@@ -64,7 +64,7 @@ class Statistics extends Component {
         // console.log(tableData)
 
         const fullData =
-            <table className='highlight centered'>
+            <table className='highlight centered frequency-table'>
                 <thead>
                     <tr>
                         <th>Name</th>

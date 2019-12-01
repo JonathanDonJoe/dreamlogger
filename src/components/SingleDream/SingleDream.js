@@ -54,8 +54,10 @@ class SingleDream extends Component {
         let dreamPeople = 'none';
 
         if (this.state.dream) {
+            console.log(this.state.dream.peopleArr)
             if (this.state.dream.peopleArr) {
-                dreamPeople = this.state.dream.peopleArr.join(', ');
+                dreamPeople = this.state.dream.peopleArr.filter(person => person).join(', ');
+                console.log(dreamPeople)
             }
 
             const dateArr = ["January", "February", "March", "April", "May", "June", "July",

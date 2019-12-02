@@ -32,12 +32,12 @@ class SingleDream extends Component {
             //     console.log('am signed in')
             //     this.getDreams()
             // }
-            console.log('componentDidUpdate')
-            console.log(this.props.myDreams)
+            // console.log('componentDidUpdate')
+            // console.log(this.props.myDreams)
 
             if (this.props.myDreams.length) {
                 let dreamIndex = Object.keys(this.props.myDreams).find(key => this.props.myDreams[key].dreamKey === this.props.match.params.dreamId)
-                console.log('updated')
+                // console.log('updated')
                 this.setState({
                     dream: this.props.myDreams[dreamIndex]
                 })
@@ -47,17 +47,17 @@ class SingleDream extends Component {
 
     render() {
 
-        console.log(this.state)
+        // console.log(this.state)
         let dreamTitle = 'Untitled'
         let dreamDate = 'No date'
         let dreamContents = 'No Contents'
         let dreamPeople = 'none';
 
         if (this.state.dream) {
-            console.log(this.state.dream.peopleArr)
+            // console.log(this.state.dream.peopleArr)
             if (this.state.dream.peopleArr) {
                 dreamPeople = this.state.dream.peopleArr.filter(person => person).join(', ');
-                console.log(dreamPeople)
+                // console.log(dreamPeople)
             }
 
             const dateArr = ["January", "February", "March", "April", "May", "June", "July",
@@ -89,7 +89,7 @@ class SingleDream extends Component {
                 <h1>Dream not found</h1>
         return (
             <div>
-                <div className='container single-dream-container'>
+                <div className='container single-dream-container white-text grey darken-2 z-depth-2'>
                 {theDream}
                 </div>
             </div>);

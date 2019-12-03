@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import DreamCard from '../DreamCard/DreamCard';
 import './AllDreams.css';
+import SearchBar from '../SearchBar/SearchBar';
 
 class AllDreams extends Component {
     // state = {
@@ -64,6 +65,7 @@ class AllDreams extends Component {
                 {msg}
                 <div className='container card-container'>
                     <div className='row'>
+                        < SearchBar />
                         {dreamCards}
                     </div>
                 </div>

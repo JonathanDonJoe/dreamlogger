@@ -6,9 +6,9 @@ import './AllDreams.css';
 import SearchBar from '../SearchBar/SearchBar';
 
 class AllDreams extends Component {
-    // state = {
-    //     dreams: []
-    // }
+    state = {
+        filterBy:''
+    }
 
     // componentDidUpdate(prevProps, prevState) {
     //     if (prevProps.auth !== this.props.auth) {
@@ -47,6 +47,12 @@ class AllDreams extends Component {
     //     })
     // }
 
+    submitSearch = (searchTerm) => {
+        this.setState({
+            filterBy: searchTerm
+        })
+    }
+
     render() {
         // console.log(this.props.auth)
         // console.log(this.state)
@@ -65,7 +71,7 @@ class AllDreams extends Component {
                 {msg}
                 <div className='container card-container'>
                     <div className='row'>
-                        < SearchBar />
+                        < SearchBar submitSearch={this.submitSearch}/>
                         {dreamCards}
                     </div>
                 </div>

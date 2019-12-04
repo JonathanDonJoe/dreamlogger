@@ -16,7 +16,7 @@ export class SearchBar extends Component {
 
     onSubmit = (e) => {
         e.preventDefault()
-        
+        this.props.submitSearch(this.state.searching)
     }
 
     render() {

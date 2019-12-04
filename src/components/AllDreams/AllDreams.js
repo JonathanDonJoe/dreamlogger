@@ -53,6 +53,13 @@ class AllDreams extends Component {
         })
     }
 
+    filterDreams = dreams => {
+        return dreams.filter( dream => 
+            dream.title.toLowerCase().includes(this.state.filterBy.toLowerCase()) 
+                || dream.contents.toLowerCase().includes(this.state.filterBy) 
+                || dream.peopleArr.map( name => name.toLowerCase()).includes(this.state.filterBy))
+    }
+
     render() {
         // console.log(this.props.auth)
         // console.log(this.state)
@@ -64,7 +71,12 @@ class AllDreams extends Component {
         let msg = <h1>Dreams</h1>
 
         // console.log(this.state.dreams)
-        let dreamCards = this.props.myDreams.map((dream, i) => <DreamCard dream={dream} dreamId={i} key={i} />)
+
+        let dreamCards = this.state.filterBy
+            ? this.filterDreams(this.props.myDreams).map((dream, i) => <DreamCard dream={dream} dreamId={i} key={i} />)
+            : this.props.myDreams.map((dream, i) => <DreamCard dream={dream} dreamId={i} key={i} />)
+
+        
         // let dreamCards = this.state.dreams.map((dream, i) => <DreamCard dream={dream} dreamId={i} key={i} />)
         return (
             <div>

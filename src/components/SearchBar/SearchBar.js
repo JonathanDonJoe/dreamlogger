@@ -21,7 +21,7 @@ export class SearchBar extends Component {
 
     render() {
         return (
-            <nav id="searchbar-style" className='white col s8 offset-s2'>
+            <nav id="searchbar-style" className='white col s8 offset-s2 allDreams-searchbar'>
                 <div className="nav-wrapper">
                     <form onSubmit={this.onSubmit}>
                         <div className="input-field">

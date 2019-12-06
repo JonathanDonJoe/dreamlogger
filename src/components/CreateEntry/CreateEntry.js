@@ -50,14 +50,6 @@ class CreateEntry extends Component {
                 })
             }
         } else {
-            // console.log('Actual submit')
-            // const rootRef = firebase.database().ref().child('Hi');
-            // rootRef.on('value', snap => {
-            //     // console.log(snap.val())
-            //     this.setState({
-            //         msg: snap.val()
-            //     })
-            // })
             this.writeUserData()
         }
     }
@@ -84,11 +76,6 @@ class CreateEntry extends Component {
             contents: this.state.contents,
             date: this.state.date
         });
-        // ref.set([{
-        //   title: this.state.title,
-        //   peopleArr: this.state.peopleArr,
-        //   contents : this.state.contents
-        // }]);
     }
 
     changeTitle = (e) => {
@@ -160,7 +147,7 @@ class CreateEntry extends Component {
                     </div>
                     <div className="row">
                         <div className="input-field col s8 offset-s2">
-                            <input id='dream-contents' value={this.state.contents} onChange={this.changeContents} type="text" className="validate" placeholder="I had a dream about some crazy pirates led by Jonny Depp.  " />
+                            <textarea id='dream-contents textarea1' value={this.state.contents} onChange={this.changeContents} className="validate materialize-textarea" placeholder="I had a dream about some crazy pirates led by Jonny Depp.  " ></textarea>
                             <label htmlFor="dream-title">Dream Contents</label>
                         </div>
                     </div>

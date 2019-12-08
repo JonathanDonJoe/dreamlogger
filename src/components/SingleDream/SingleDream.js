@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import faker from 'faker';
 
 import './SingleDream.css'
 
@@ -76,6 +77,7 @@ class SingleDream extends Component {
                 dreamContents = this.state.dream.contents;
 
                 const boldName = 'Jed';
+                const replacementName = faker.name.findName();
 
                 // ATTEMPT 1 //
 
@@ -169,7 +171,7 @@ class SingleDream extends Component {
                 
                 for (let i=matchedArr.length-1; i>=0; i--){
                     // console.log('ran')
-                    emphasizedContents = replaceWord(emphasizedContents, matchedArr[i].index, 'Joel')
+                    emphasizedContents = replaceWord(emphasizedContents, matchedArr[i].index, replacementName);
                 }
 
 
@@ -199,6 +201,7 @@ class SingleDream extends Component {
             </div>
             :
             <h1>Dream not found</h1>
+
         return (
             <div>
                 <div className='container single-dream-container white-text grey darken-2 z-depth-2'>

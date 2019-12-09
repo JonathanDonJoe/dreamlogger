@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import faker from 'faker';
 
-import './SingleDream.css'
+import './SingleDream.css';
+import { matchWord, replaceWord } from '../../utility/utility';
 
 class SingleDream extends Component {
     state = {
@@ -79,106 +80,13 @@ class SingleDream extends Component {
                 const boldName = 'Jed';
                 const replacementName = faker.name.findName();
 
-                // ATTEMPT 1 //
-
-                // dreamContents = <p>hello <em>my</em> friends</p>
-
-
-
-                // ATTEMPT 2 //
-
-                // let emphasizedContents = 
-                //     dreamContents
-                //         .split(' ')
-                //         .map( word => 
-                //             word === boldName 
-                //                 ? <em>{word}</em>
-                //                 : word
-                //         )
-
-
-                // ATTEMPT 3 //
-
-                // let contentsArr = []
-                // contentsArr.push(emphasizedContents[0])
-                // for (let i=1; i < emphasizedContents.length; i++) {
-                //     contentsArr.push(' ')
-                //     contentsArr.push(emphasizedContents[i])
-                // }
-
-
-                // ATTEMPT 4 //
-                // This works, but also emphasizes the name if its not its own word (bold 'me' will also bold part of 'home')
-
-                // let emphasizedContents = 
-                //     dreamContents
-                //         .split(boldName)
-                //         // .join(<em>{boldName}</em>)
-
-                // let contentsArr = []
-                // contentsArr.push(emphasizedContents[0])
-                // for (let i=1; i < emphasizedContents.length; i++) {
-                //     // contentsArr.push(' ')
-                //     contentsArr.push(<em>{boldName}</em>)
-                //     contentsArr.push(emphasizedContents[i])
-                // }
-
-
-
-                // // ATTEMPT 5 //
-                // // Works for all instances that are surrounded by spaces.  Does not work for all instances attached to a comma or punctuation
-
-                // let emphasizedContents =
-                //     dreamContents
-                //         .split(' ')
-                //         // .join(<em>{boldName}</em>)
-                //         .map(word =>
-                //             word === boldName
-                //                 ? <b>{word}</b>
-                //                 : word
-                //         )
-
-                // let contentsArr = []
-                // contentsArr.push(emphasizedContents[0])
-                // for (let i=1; i < emphasizedContents.length; i++) {
-                //     // contentsArr.push(' ')
-                //     contentsArr.push(' ')
-                //     contentsArr.push(emphasizedContents[i])
-                // }
-
-
-
-
-                // ATTEMPT 6 //
-                // Works using RegExp
-
-                function matchWord(s, word) {
-                    var re = new RegExp( '\\b' + word + '\\b', 'g');
-                    // console.log(re)
-                    // console.log([...s.matchAll(re)])
-                    return [...s.matchAll(re)];
-                }
-
-                function replaceWord(str, index, word) {
-                    let newStr = str;
-                    newStr = str.slice(0,index) + word + str.slice(index+word.length-1)
-
-                    return newStr
-                }
 
                 let matchedArr = matchWord(dreamContents, boldName)
                 let emphasizedContents = dreamContents
                 
                 for (let i=matchedArr.length-1; i>=0; i--){
-                    // console.log('ran')
                     emphasizedContents = replaceWord(emphasizedContents, matchedArr[i].index, replacementName);
                 }
-
-
-
-
-
-
 
                 // console.log(contentsArr)
                 // console.log(emphasizedContents)

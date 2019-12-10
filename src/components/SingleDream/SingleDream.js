@@ -54,12 +54,16 @@ class SingleDream extends Component {
         let dreamDate = 'No date'
         let dreamContents = 'No Contents'
         let dreamPeople = 'none';
+        let dreamPeopleArr = [];
 
         if (this.state.dream) {
-            // console.log(this.state.dream.peopleArr)
+            console.log(this.state.dream.peopleArr)
             if (this.state.dream.peopleArr) {
-                dreamPeople = this.state.dream.peopleArr.filter(person => person).join(', ');
-                // console.log(dreamPeople)
+                // dreamPeople = this.state.dream.peopleArr.filter(person => person).join(', ');
+                dreamPeopleArr = this.state.dream.peopleArr.filter(person => person).map(person => [person, faker.name.findName()])
+                dreamPeople = dreamPeopleArr.map(personArr => personArr[1]).join(', ');
+                console.log(dreamPeopleArr)
+                console.log(dreamPeople)
             }
 
             const dateArr = ["January", "February", "March", "April", "May", "June", "July",
@@ -75,18 +79,33 @@ class SingleDream extends Component {
                 dreamTitle = this.state.dream.title;
             }
             if (this.state.dream.contents) {
-                dreamContents = this.state.dream.contents;
+                // dreamContents = this.state.dream.contents;
 
-                const boldName = 'Jed';
-                const replacementName = faker.name.findName();
+                // const boldName = 'Jed';
+                // const replacementName = faker.name.findName();
 
 
-                let matchedArr = matchWord(dreamContents, boldName)
-                let emphasizedContents = dreamContents
-                
-                for (let i=matchedArr.length-1; i>=0; i--){
-                    emphasizedContents = replaceWord(emphasizedContents, matchedArr[i].index, replacementName);
+                // let matchedArr = matchWord(dreamContents, boldName)
+                // let emphasizedContents = dreamContents
+
+                // for (let i = matchedArr.length - 1; i >= 0; i--) {
+                //     emphasizedContents = replaceWord(emphasizedContents, matchedArr[i].index, replacementName);
+                // }
+
+
+                // This does a 1:1 replacement.  It does not replace partial names
+                let emphasizedContents = this.state.dream.contents;
+                for (let i = 0; i < dreamPeopleArr.length; i++) {
+                    let boldName = dreamPeopleArr[i][0];
+                    let replacementName = dreamPeopleArr[i][1];
+                    let matchedArr = matchWord(emphasizedContents, boldName)
+                    
+                    for (let i = matchedArr.length - 1; i >= 0; i--) {
+                        emphasizedContents = replaceWord(emphasizedContents, matchedArr[i].index, replacementName);
+                    }
                 }
+
+
 
                 // console.log(contentsArr)
                 // console.log(emphasizedContents)

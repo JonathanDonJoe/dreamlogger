@@ -3,7 +3,7 @@ function matchWord(s, word) {
     return [...s.matchAll(re)];
 }
 
-// replaces all instances of a word
+// replaces last instance of a word
 function replaceWord(str, index, word) {
     let newStr = str;
     newStr = str.slice(0,index) + word + str.slice(index+word.length-1)

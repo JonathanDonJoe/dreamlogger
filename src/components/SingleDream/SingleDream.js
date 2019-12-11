@@ -96,13 +96,26 @@ class SingleDream extends Component {
                 // This does a 1:1 replacement.  It does not replace partial names
                 let emphasizedContents = this.state.dream.contents;
                 for (let i = 0; i < dreamPeopleArr.length; i++) {
+                    
                     let boldName = dreamPeopleArr[i][0];
                     let replacementName = dreamPeopleArr[i][1];
                     let matchedArr = matchWord(emphasizedContents, boldName)
-                    
+                    console.log(matchedArr)
                     for (let i = matchedArr.length - 1; i >= 0; i--) {
                         emphasizedContents = replaceWord(emphasizedContents, matchedArr[i].index, replacementName);
                     }
+                    let boldFirstName = dreamPeopleArr[i][0].split(' ')[0]
+                    console.log(boldFirstName);
+                    let replacementFirstName = dreamPeopleArr[i][1].split(' ')[0];
+                    console.log(replacementFirstName);
+                    let matchedArr2 = matchWord(emphasizedContents, boldFirstName)
+                    console.log(matchedArr2);
+                    console.log(matchedArr2.length);
+                    // if (matchedArr2.length) {
+                        for (let i = matchedArr2.length - 1; i >= 0; i--) {
+                            emphasizedContents = replaceWord(emphasizedContents, matchedArr2[i].index, replacementFirstName);
+                        }
+                    // }
                 }
 
 

@@ -102,8 +102,9 @@ class SingleDream extends Component {
                     let matchedArr = matchWord(emphasizedContents, boldName)
                     console.log(matchedArr)
                     for (let i = matchedArr.length - 1; i >= 0; i--) {
-                        emphasizedContents = replaceWord(emphasizedContents, matchedArr[i].index, replacementName);
+                        emphasizedContents = replaceWord(emphasizedContents, boldName.length, matchedArr[i].index, replacementName);
                     }
+                    console.log(emphasizedContents)
                     let boldFirstName = dreamPeopleArr[i][0].split(' ')[0]
                     console.log(boldFirstName);
                     let replacementFirstName = dreamPeopleArr[i][1].split(' ')[0];
@@ -113,8 +114,9 @@ class SingleDream extends Component {
                     console.log(matchedArr2.length);
                     // if (matchedArr2.length) {
                         for (let i = matchedArr2.length - 1; i >= 0; i--) {
-                            emphasizedContents = replaceWord(emphasizedContents, matchedArr2[i].index, replacementFirstName);
+                            emphasizedContents = replaceWord(emphasizedContents, replacementFirstName.length, matchedArr2[i].index, replacementFirstName);
                         }
+                    console.log(emphasizedContents)
                     // }
                 }
 

@@ -4,9 +4,9 @@ function matchWord(s, word) {
 }
 
 // replaces last instance of a word
-function replaceWord(str, index, word) {
+function replaceWord(str, replaceLen, index, word) {
     let newStr = str;
-    newStr = str.slice(0,index) + word + str.slice(index+word.length-1)
+    newStr = str.slice(0,index) + word + str.slice(index+replaceLen-1)
     return newStr
 }
 

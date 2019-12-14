@@ -113,7 +113,7 @@ class SingleDream extends Component {
                         console.log(matchedArr2.length);
                         // if (matchedArr2.length) {
                         for (let i = matchedArr2.length - 1; i >= 0; i--) {
-                            emphasizedContents = replaceWord(emphasizedContents, replacementFirstName.length, matchedArr2[i].index, replacementFirstName);
+                            emphasizedContents = replaceWord(emphasizedContents, boldFirstName.length, matchedArr2[i].index, replacementFirstName);
                         }
                         console.log(emphasizedContents)
                         // }

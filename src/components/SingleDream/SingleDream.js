@@ -50,7 +50,7 @@ class SingleDream extends Component {
 
     render() {
 
-        // console.log(this.state)
+        console.log(this.props.auth)
         let dreamTitle = 'Untitled'
         let dreamDate = 'No date'
         let dreamContents = 'No Contents'
@@ -58,7 +58,7 @@ class SingleDream extends Component {
         let dreamPeopleArr = [];
 
         if (this.state.dream) {
-            console.log(this.state.dream.peopleArr)
+            // console.log(this.state.dream.peopleArr)
 
 
             if (!this.state.owner) {
@@ -74,8 +74,8 @@ class SingleDream extends Component {
                     // dreamPeople = this.state.dream.peopleArr.filter(person => person).join(', ');
                     dreamPeopleArr = this.state.dream.peopleArr.filter(person => person).map(person => [person, faker.name.findName()])
                     dreamPeople = dreamPeopleArr.map(personArr => personArr[1]).join(', ');
-                    console.log(dreamPeopleArr)
-                    console.log(dreamPeople)
+                    // console.log(dreamPeopleArr)
+                    // console.log(dreamPeople)
                 }
                 if (this.state.dream.contents) {
                     // dreamContents = this.state.dream.contents;
@@ -99,23 +99,23 @@ class SingleDream extends Component {
                         let boldName = dreamPeopleArr[i][0];
                         let replacementName = dreamPeopleArr[i][1];
                         let matchedArr = matchWord(emphasizedContents, boldName)
-                        console.log(matchedArr)
+                        // console.log(matchedArr)
                         for (let i = matchedArr.length - 1; i >= 0; i--) {
                             emphasizedContents = replaceWord(emphasizedContents, boldName.length, matchedArr[i].index, replacementName);
                         }
-                        console.log(emphasizedContents)
+                        // console.log(emphasizedContents)
                         let boldFirstName = dreamPeopleArr[i][0].split(' ')[0]
-                        console.log(boldFirstName);
+                        // console.log(boldFirstName);
                         let replacementFirstName = dreamPeopleArr[i][1].split(' ')[0];
-                        console.log(replacementFirstName);
+                        // console.log(replacementFirstName);
                         let matchedArr2 = matchWord(emphasizedContents, boldFirstName)
-                        console.log(matchedArr2);
-                        console.log(matchedArr2.length);
+                        // console.log(matchedArr2);
+                        // console.log(matchedArr2.length);
                         // if (matchedArr2.length) {
                         for (let i = matchedArr2.length - 1; i >= 0; i--) {
                             emphasizedContents = replaceWord(emphasizedContents, boldFirstName.length, matchedArr2[i].index, replacementFirstName);
                         }
-                        console.log(emphasizedContents)
+                        // console.log(emphasizedContents)
                         // }
                     }
 
@@ -176,7 +176,8 @@ class SingleDream extends Component {
 
 function mapStateToProps(state) {
     return ({
-        myDreams: state.myDreams
+        myDreams: state.myDreams,
+        auth: state.auth
     })
 }
 

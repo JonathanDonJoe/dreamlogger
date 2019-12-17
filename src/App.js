@@ -18,7 +18,11 @@ import Statistics from './components/Statistics/Statistics';
 class App extends Component {
     state = {
         text: '20',
-        isSignedIn: false
+        isSignedIn: false,
+        uid: '',
+        email: '',
+        userAvatar: '',
+        displayName: ''
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -32,31 +36,40 @@ class App extends Component {
     }
 
     componentDidMount() {
-        firebase.auth().onAuthStateChanged( user => {
+        firebase.auth().onAuthStateChanged(user => {
             console.log(user)
-            this.setState({
-                isSignedIn: !!user,
-                uid: user.uid
-            }, () => {
-                this.props.login({
-                    isSignedIn:this.state.isSignedIn,
-                    uid: this.state.uid
+            if (user) {
+
+                this.setState({
+                    isSignedIn: !!user,
+                    uid: user.uid,
+                    email: user.email,
+                    userAvatar: user.photoURL,
+                    displayName: user.displayName
+                }, () => {
+                    this.props.login({
+                        isSignedIn: this.state.isSignedIn,
+                        uid: this.state.uid,
+                        email: this.state.email,
+                        userAvatar: this.state.userAvatar,
+                        displayName: this.state.displayName
+                    })
+                    // console.log('mount')
+                    if (this.state.isSignedIn) {
+                        this.getDreams()
+                    }
                 })
-                // console.log('mount')
-                if(this.state.isSignedIn){
-                    this.getDreams()
-                }
-            })
+            }
         })
         // this.getDreams()
-    //     const rootRef = firebase.database().ref().child('Hi');
-    //     rootRef.on('value', snap => {
-    //         // console.log(snap.val())
-    //         this.setState({
-    //             text: snap.val()
-    //         })
-    //     })
-    //     this.writeUserData('joe')
+        //     const rootRef = firebase.database().ref().child('Hi');
+        //     rootRef.on('value', snap => {
+        //         // console.log(snap.val())
+        //         this.setState({
+        //             text: snap.val()
+        //         })
+        //     })
+        //     this.writeUserData('joe')
 
     }
 
@@ -95,10 +108,10 @@ class App extends Component {
                     <Route path='/' component={SideNav} />
                     <Route path='/login' component={LogIn} />
                     <Route exact path='/' component={Home} />
-                    <Route exact path='/entry' component={this.state.isSignedIn?CreateEntry:LogIn} />
-                    <Route exact path='/dreams' component={this.state.isSignedIn?AllDreams:LogIn} />
-                    <Route path='/dreams/:dreamId' component={this.state.isSignedIn?SingleDream:LogIn} />
-                    <Route path='/stats' component={this.state.isSignedIn?Statistics:LogIn} />
+                    <Route exact path='/entry' component={this.state.isSignedIn ? CreateEntry : LogIn} />
+                    <Route exact path='/dreams' component={this.state.isSignedIn ? AllDreams : LogIn} />
+                    <Route path='/dreams/:dreamId' component={this.state.isSignedIn ? SingleDream : LogIn} />
+                    <Route path='/stats' component={this.state.isSignedIn ? Statistics : LogIn} />
                 </div>
             </Router>
         );

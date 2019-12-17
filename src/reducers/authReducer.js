@@ -1,4 +1,12 @@
-export default (state = { isSignedIn: false, uid: '' }, action) => {
+export default (
+    state = {
+        isSignedIn: false,
+        uid: '',
+        email: '',
+        userAvatar: '',
+        displayName: ''
+    },
+    action) => {
     if (action.type === 'login') {
         // console.log(action.payload)
         return action.payload

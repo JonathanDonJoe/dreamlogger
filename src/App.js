@@ -7,7 +7,7 @@ import { bindActionCreators } from '../../../../Library/Caches/typescript/3.6/no
 import './App.css';
 import Home from './components/Home/Home';
 import CreateEntry from './components/CreateEntry/CreateEntry';
-import AllDreams from './components/AllDreams/AllDreams';
+import MyDreams from './components/MyDreams/MyDreams';
 import SingleDream from './components/SingleDream/SingleDream';
 import SideNav from './components/SideNav/SideNav';
 import LogIn from './components/LogIn/LogIn';
@@ -92,6 +92,12 @@ class App extends Component {
             this.props.setDream(dreamArr)
         })
     }
+    getAllDreams() {
+        const rootRef = firebase.database().ref().child(`users/`);
+        rootRef.on('value', snap => {
+            console.log(snap.val())
+        })
+    }
 
     writeUserData(name) {
         firebase.database().ref('users/').set({
@@ -102,6 +108,7 @@ class App extends Component {
     render() {
         // console.log(this.state.isSignedIn)
         // console.log(this.props)
+        this.getAllDreams();
         return (
             <Router>
                 <div className="App">
@@ -109,7 +116,7 @@ class App extends Component {
                     <Route path='/login' component={LogIn} />
                     <Route exact path='/' component={Home} />
                     <Route exact path='/entry' component={this.state.isSignedIn ? CreateEntry : LogIn} />
-                    <Route exact path='/dreams' component={this.state.isSignedIn ? AllDreams : LogIn} />
+                    <Route exact path='/dreams' component={this.state.isSignedIn ? MyDreams : LogIn} />
                     <Route path='/dreams/:dreamId' component={this.state.isSignedIn ? SingleDream : LogIn} />
                     <Route path='/stats' component={this.state.isSignedIn ? Statistics : LogIn} />
                 </div>

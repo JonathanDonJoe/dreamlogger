@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import * as firebase from 'firebase';
 import { connect } from 'react-redux';
 import DreamCard from '../DreamCard/DreamCard';
-import './AllDreams.css';
+import './MyDreams.css';
 import SearchBar from '../SearchBar/SearchBar';
 
 class AllDreams extends Component {

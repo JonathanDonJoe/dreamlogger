@@ -8,7 +8,7 @@ class SideNav extends Component {
     state = {}
     componentDidUpdate() {
         var elems = document.querySelectorAll('.sidenav');
-        console.log(elems)
+        // console.log(elems)
         window.M.Sidenav.init(elems, {});
     }
     render() {
@@ -23,7 +23,7 @@ class SideNav extends Component {
             links = [
                 <li key='0'><NavLink to="/">Home</NavLink></li>,
                 <li key='1'><NavLink to="/entry">New Dream</NavLink></li>,
-                <li key='2'><NavLink to="/dreams">All Dreams</NavLink></li>,
+                <li key='2'><NavLink to="/dreams">My Dreams</NavLink></li>,
                 <li key='3'><NavLink to='/stats'>Statistics</NavLink></li>,
                 <li key='4'><NavLink to='/login'>LogOut</NavLink></li>
             ]
@@ -45,8 +45,8 @@ class SideNav extends Component {
             </div></li>
             : ""
 
-        console.log(this.props.auth.isSignedIn)
-        console.log(userView)
+        // console.log(this.props.auth.isSignedIn)
+        // console.log(userView)
 
         return (
             <div className='header'>

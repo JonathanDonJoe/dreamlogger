@@ -96,7 +96,14 @@ class App extends Component {
     getAllDreams() {
         const rootRef = firebase.database().ref().child(`users/`);
         rootRef.on('value', snap => {
-            console.log(snap.val())
+            const allDreamsArr = []
+            // snap.val().forEach(item => console.log(item))
+            Object.keys(snap.val()).forEach(item => console.log(snap.val()[item]))
+            console.log(Object.keys(snap.val()).map(item => Object.keys(snap.val()[item])))
+            // .forEach(dream => allDreamsArr.push(dream))
+            // )
+            console.log(allDreamsArr)
+            
         })
     }
 

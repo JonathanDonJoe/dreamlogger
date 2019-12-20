@@ -14,6 +14,7 @@ import LogIn from './components/LogIn/LogIn';
 import loginAction from './actions/loginAction';
 import setDreamAction from './actions/setDreamAction';
 import Statistics from './components/Statistics/Statistics';
+import PublicDreams from './components/PublicDreams/PublicDreams';
 
 class App extends Component {
     state = {
@@ -117,6 +118,7 @@ class App extends Component {
                     <Route exact path='/' component={Home} />
                     <Route exact path='/entry' component={this.state.isSignedIn ? CreateEntry : LogIn} />
                     <Route exact path='/dreams' component={this.state.isSignedIn ? MyDreams : LogIn} />
+                    <Route exact path='/allDreams' component={PublicDreams} />
                     <Route path='/dreams/:dreamId' component={this.state.isSignedIn ? SingleDream : LogIn} />
                     <Route path='/stats' component={this.state.isSignedIn ? Statistics : LogIn} />
                 </div>

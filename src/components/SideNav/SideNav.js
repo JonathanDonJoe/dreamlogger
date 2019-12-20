@@ -16,7 +16,8 @@ class SideNav extends Component {
 
         let links = [
             <li key='0'><NavLink to="/">Home</NavLink></li>,
-            <li key='1'><NavLink to='/login'>LogIn</NavLink></li>
+            <li key='1'><NavLink to='/allDreams'>All Dreams</NavLink></li>,
+            <li key='2'><NavLink to='/login'>LogIn</NavLink></li>
         ]
 
         if (this.props.auth.isSignedIn) {
@@ -24,8 +25,9 @@ class SideNav extends Component {
                 <li key='0'><NavLink to="/">Home</NavLink></li>,
                 <li key='1'><NavLink to="/entry">New Dream</NavLink></li>,
                 <li key='2'><NavLink to="/dreams">My Dreams</NavLink></li>,
-                <li key='3'><NavLink to='/stats'>Statistics</NavLink></li>,
-                <li key='4'><NavLink to='/login'>LogOut</NavLink></li>
+                <li key='3'><NavLink to="/allDreams">All Dreams</NavLink></li>,
+                <li key='4'><NavLink to='/stats'>Statistics</NavLink></li>,
+                <li key='5'><NavLink to='/login'>LogOut</NavLink></li>
             ]
         }
 

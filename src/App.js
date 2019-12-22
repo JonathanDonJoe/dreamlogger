@@ -13,6 +13,7 @@ import SideNav from './components/SideNav/SideNav';
 import LogIn from './components/LogIn/LogIn';
 import loginAction from './actions/loginAction';
 import setDreamAction from './actions/setDreamAction';
+import setAllDreamsAction from './actions/setAllDreamsAction';
 import Statistics from './components/Statistics/Statistics';
 import PublicDreams from './components/PublicDreams/PublicDreams';
 
@@ -37,6 +38,7 @@ class App extends Component {
     }
 
     componentDidMount() {
+        this.getAllDreams()
         firebase.auth().onAuthStateChanged(user => {
             console.log(user)
             if (user) {
@@ -110,7 +112,8 @@ class App extends Component {
                         })
                 })
             })
-            console.log(allDreamsArr)
+            // console.log(allDreamsArr)
+            this.props.setAllDreams(allDreamsArr);
         })
     }
 
@@ -123,7 +126,7 @@ class App extends Component {
     render() {
         // console.log(this.state.isSignedIn)
         // console.log(this.props)
-        this.getAllDreams();
+        // this.getAllDreams();
         return (
             <Router>
                 <div className="App">
@@ -151,7 +154,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         login: loginAction,
-        setDream: setDreamAction
+        setDream: setDreamAction,
+        setAllDreams: setAllDreamsAction
     }, dispatch)
 }
 

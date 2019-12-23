@@ -1,5 +1,5 @@
 export default (state = [], action) => {
-    if(action.type === 'setDream') {
+    if(action.type === 'setAllDreams') {
         console.log(action.payload)
         return action.payload
     }

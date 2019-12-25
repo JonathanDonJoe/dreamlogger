@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import DreamCard from '../DreamCard/DreamCard';
 import SearchBar from '../SearchBar/SearchBar';
+import './PublicDreams.css'
 
 class PublicDreams extends Component {
     state = {

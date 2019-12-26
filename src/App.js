@@ -105,10 +105,16 @@ class App extends Component {
                 const thisUserData = allData[user]
                 // console.log(Object.keys(thisUserData))
                 Object.keys(thisUserData).forEach( dreamID => {
+                    let newDreamObj = {}
+                    for (let key in thisUserData[dreamID]) {
+                        newDreamObj[key] = thisUserData[dreamID][key]
+                    }
+                    newDreamObj['dreamKey'] = dreamID
+                    console.log(newDreamObj)
                     allDreamsArr.push(
                         {
                             userID: user,
-                            dream: thisUserData[dreamID]
+                            dream: newDreamObj
                         })
                 })
             })

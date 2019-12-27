@@ -80,37 +80,40 @@ class App extends Component {
         const rootRef = firebase.database().ref().child(`users/${firebase.auth().currentUser.uid}`);
         rootRef.on('value', snap => {
             // console.log(snap.val())
-            const dreamArr = []
-            let dreamItem = {}
+            const dreamArr = [];
+            let dreamItem = {};
             for (let key in snap.val()) {
                 // console.log(key)
-                dreamItem = snap.val()[key]
-                dreamItem['dreamKey'] = key
+                dreamItem = snap.val()[key];
+                dreamItem['dreamKey'] = key;
+                dreamItem['dreamUserID'] = firebase.auth().currentUser.uid;
                 // console.log(dreamItem)
-                dreamArr.push(dreamItem)
+                dreamArr.push(dreamItem);
             }
             // this.setState({
             //     dreams: dreamArr
             // })
-            this.props.setDream(dreamArr)
+            this.props.setDream(dreamArr);
         })
     }
     getAllDreams() {
         const rootRef = firebase.database().ref().child(`users/`);
         rootRef.on('value', snap => {
-            const allDreamsArr = []
-            const allData = snap.val()
+            const allDreamsArr = [];
+            const allData = snap.val();
             // console.log(allData)
             Object.keys(allData).forEach(user => {
-                const thisUserData = allData[user]
+                // console.log(user)
+                const thisUserData = allData[user];
                 // console.log(Object.keys(thisUserData))
                 Object.keys(thisUserData).forEach( dreamID => {
-                    let newDreamObj = {}
+                    let newDreamObj = {};
                     for (let key in thisUserData[dreamID]) {
-                        newDreamObj[key] = thisUserData[dreamID][key]
+                        newDreamObj[key] = thisUserData[dreamID][key];
                     }
-                    newDreamObj['dreamKey'] = dreamID
-                    console.log(newDreamObj)
+                    newDreamObj['dreamKey'] = dreamID;
+                    newDreamObj['dreamUserID'] = user;
+                    // console.log(newDreamObj)
                     allDreamsArr.push(
                         {
                             userID: user,

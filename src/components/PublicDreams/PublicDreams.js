@@ -13,7 +13,7 @@ class PublicDreams extends Component {
     render() {
         let msg = <h1>Dreams</h1>
 
-        let dreamCards = this.props.allDreams.map((dreamItem, i) => <DreamCard dream={dreamItem.dream} dreamId={i} key={i} />)
+        let dreamCards = this.props.allDreams.map((dreamItem, i) => <DreamCard dream={dreamItem} dreamId={i} key={i} />)
 
         // let dreamCards = this.state.filterBy
         //     ? this.filterDreams(this.props.allDreams).map((dream, i) => <DreamCard dream={dream} dreamId={i} key={i} />)

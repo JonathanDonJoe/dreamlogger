@@ -115,10 +115,12 @@ class App extends Component {
                     newDreamObj['dreamUserID'] = user;
                     // console.log(newDreamObj)
                     allDreamsArr.push(
-                        {
-                            // userID: user,
-                            dream: newDreamObj
-                        })
+                        newDreamObj
+                        // {
+                        //     // userID: user,
+                        //     dream: newDreamObj
+                        // }
+                        )
                 })
             })
             // console.log(allDreamsArr)

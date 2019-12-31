@@ -25,6 +25,10 @@ class SingleDream extends Component {
             this.setState({
                 dream: this.props.myDreams[dreamIndex]
             })
+        } else {
+            console.log('set dream without ownership')
+            console.log(this.props.match.params.dreamId)
+            console.log(this.props.allDreams)
         }
     }
 
@@ -46,10 +50,24 @@ class SingleDream extends Component {
                 })
             }
         }
+        if (prevProps.allDreams !== this.props.allDreams) {
+            if (this.props.allDreams.length) {
+                console.log('update setDream without ownership')
+                console.log(this.props.match.params.dreamId)
+                console.log(this.props.myDreams)
+                console.log(this.props.allDreams)
+                let dreamIndex = Object.keys(this.props.allDreams).find(key => this.props.allDreams[key].dreamKey === this.props.match.params.dreamId)
+                console.log(dreamIndex)
+                
+                // sanitize and randomize dream here.  then setState
+
+            }
+        }
     }
 
     render() {
 
+        console.log(this.state)
         console.log(this.props.auth)
         let dreamTitle = 'Untitled'
         let dreamDate = 'No date'
@@ -177,7 +195,8 @@ class SingleDream extends Component {
 function mapStateToProps(state) {
     return ({
         myDreams: state.myDreams,
-        auth: state.auth
+        auth: state.auth, 
+        allDreams: state.allDreams
     })
 }
 

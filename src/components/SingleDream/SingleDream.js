@@ -21,7 +21,7 @@ class SingleDream extends Component {
         // console.log(this.props)
         if (this.props.myDreams.length) {
             let dreamIndex = Object.keys(this.props.myDreams).find(key => this.props.myDreams[key].dreamKey === this.props.match.params.dreamId)
-            // console.log('updated')
+            console.log('owner')
             this.setState({
                 dream: this.props.myDreams[dreamIndex]
             })
@@ -34,36 +34,68 @@ class SingleDream extends Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.myDreams !== this.props.myDreams) {
-            // console.log(this.props.auth.isSignedIn)
-            // if (this.props.auth.isSignedIn) {
-            //     console.log('am signed in')
-            //     this.getDreams()
+            // if (this.props.myDreams.length) {
+            //     let dreamIndex = Object.keys(this.props.myDreams).find(key => this.props.myDreams[key].dreamKey === this.props.match.params.dreamId)
+            //     console.log(dreamIndex)
+            //     console.log('owner')
+            //     if (dreamIndex) {
+            //         this.setState({
+            //             dream: this.props.myDreams[dreamIndex]
+            //         })
+            //     }
             // }
-            // console.log('componentDidUpdate')
-            // console.log(this.props.myDreams)
-
-            if (this.props.myDreams.length) {
-                let dreamIndex = Object.keys(this.props.myDreams).find(key => this.props.myDreams[key].dreamKey === this.props.match.params.dreamId)
-                // console.log('updated')
-                this.setState({
-                    dream: this.props.myDreams[dreamIndex]
-                })
-            }
+            this.checkOwnership(this.props.myDreams, true)
         }
         if (prevProps.allDreams !== this.props.allDreams) {
             if (this.props.allDreams.length) {
-                console.log('update setDream without ownership')
-                console.log(this.props.match.params.dreamId)
-                console.log(this.props.myDreams)
-                console.log(this.props.allDreams)
-                let dreamIndex = Object.keys(this.props.allDreams).find(key => this.props.allDreams[key].dreamKey === this.props.match.params.dreamId)
-                console.log(dreamIndex)
-                
-                // sanitize and randomize dream here.  then setState
+                // console.log('update setDream without ownership')
+                // console.log(this.props.match.params.dreamId)
+                // console.log(this.props.myDreams)
+                // console.log(this.props.allDreams)
+                // let dreamIndex = Object.keys(this.props.allDreams).find(key => this.props.allDreams[key].dreamKey === this.props.match.params.dreamId)
+                // console.log(dreamIndex)
 
+                // // sanitize and randomize dream here.  then setState
+                // this.setState({
+                //     dream: this.props.allDreams[dreamIndex]
+                // })
+                this.checkOwnership(this.props.allDreams, false)
             }
         }
     }
+
+    checkOwnership = (dreamArr, isOwnedDream) => {
+        if (dreamArr.length) {
+            let dreamIndex = Object.keys(dreamArr).find(key => dreamArr[key].dreamKey === this.props.match.params.dreamId)
+            console.log(dreamIndex)
+            if (dreamIndex) {
+                if (isOwnedDream) {
+                    console.log('owner')
+                    this.setState({
+                        dream: dreamArr[dreamIndex],
+                        owner: isOwnedDream
+                    })
+                } else {
+                    console.log('not owner')
+                    this.setState({
+                        dream: dreamArr[dreamIndex]
+                    })
+                }
+            }
+        }
+    }
+
+    checkNotOwnership = (dreamArr) => {
+        if (dreamArr.length) {
+            let dreamIndex = Object.keys(dreamArr).find(key => dreamArr[key].dreamKey === this.props.match.params.dreamId)
+            console.log(dreamIndex)
+            // sanitize and randomize dream here.  then setState
+            this.setState({
+                dream: dreamArr[dreamIndex]
+            })
+        }
+    }
+
 
     render() {
 
@@ -195,7 +227,7 @@ class SingleDream extends Component {
 function mapStateToProps(state) {
     return ({
         myDreams: state.myDreams,
-        auth: state.auth, 
+        auth: state.auth,
         allDreams: state.allDreams
     })
 }

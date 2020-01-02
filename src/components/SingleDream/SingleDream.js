@@ -20,31 +20,35 @@ class SingleDream extends Component {
         // console.log('componentDidMount')
         // console.log(this.props)
         if (this.props.myDreams.length) {
-            let dreamIndex = Object.keys(this.props.myDreams).find(key => this.props.myDreams[key].dreamKey === this.props.match.params.dreamId)
-            console.log('owner')
-            this.setState({
-                dream: this.props.myDreams[dreamIndex]
-            })
+            // let dreamIndex = Object.keys(this.props.myDreams).find(key => this.props.myDreams[key].dreamKey === this.props.match.params.dreamId)
+            // console.log('owner')
+            // this.setState({
+            //     dream: this.props.myDreams[dreamIndex]
+            // })
+            this.checkOwnership(this.props.myDreams, true)
         } else {
-            console.log('set dream without ownership')
-            console.log(this.props.match.params.dreamId)
-            console.log(this.props.allDreams)
+            // console.log('set dream without ownership')
+            // console.log(this.props.match.params.dreamId)
+            // console.log(this.props.allDreams)
+            if (this.props.allDreams.length) {
+                this.checkNotOwnership(this.props.allDreams, false)
+            }
         }
     }
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.myDreams !== this.props.myDreams) {
-            // if (this.props.myDreams.length) {
-            //     let dreamIndex = Object.keys(this.props.myDreams).find(key => this.props.myDreams[key].dreamKey === this.props.match.params.dreamId)
-            //     console.log(dreamIndex)
-            //     console.log('owner')
-            //     if (dreamIndex) {
-            //         this.setState({
-            //             dream: this.props.myDreams[dreamIndex]
-            //         })
-            //     }
-            // }
-            this.checkOwnership(this.props.myDreams, true)
+            if (this.props.myDreams.length) {
+                //     let dreamIndex = Object.keys(this.props.myDreams).find(key => this.props.myDreams[key].dreamKey === this.props.match.params.dreamId)
+                //     console.log(dreamIndex)
+                //     console.log('owner')
+                //     if (dreamIndex) {
+                //         this.setState({
+                //             dream: this.props.myDreams[dreamIndex]
+                //         })
+                //     }
+                this.checkOwnership(this.props.myDreams, true)
+            }
         }
         if (prevProps.allDreams !== this.props.allDreams) {
             if (this.props.allDreams.length) {
@@ -81,6 +85,9 @@ class SingleDream extends Component {
                         dream: dreamArr[dreamIndex]
                     })
                 }
+            } else if (!dreamIndex && isOwnedDream) {
+                // console.log('look here')
+                this.checkOwnership(this.props.allDreams, false)
             }
         }
     }

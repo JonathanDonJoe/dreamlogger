@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import faker from 'faker';
 
 import './SingleDream.css';
-import { matchWord, replaceWord } from '../../utility/utility';
+import { matchWord, replaceWord, filterDream } from '../../utility/utility';
 
 class SingleDream extends Component {
     state = {
@@ -73,37 +73,12 @@ class SingleDream extends Component {
 
         if (this.state.dream) {
             if (!this.state.owner) {
-
-                if (this.state.dream.date) {
-                    dreamDate = ''
-                }
-
-                if (this.state.dream.title) {
-                    dreamTitle = this.state.dream.title;
-                }
-                if (this.state.dream.peopleArr) {
-                    dreamPeopleArr = this.state.dream.peopleArr.filter(person => person).map(person => [person, faker.name.findName()])
-                    dreamPeople = dreamPeopleArr.map(personArr => personArr[1]).join(', ');
-                }
-                if (this.state.dream.contents) {
-                    // This does a 1:1 replacement.  It does not replace partial names
-                    let emphasizedContents = this.state.dream.contents;
-                    for (let i = 0; i < dreamPeopleArr.length; i++) {
-                        let boldName = dreamPeopleArr[i][0];
-                        let replacementName = dreamPeopleArr[i][1];
-                        let matchedArr = matchWord(emphasizedContents, boldName)
-                        for (let i = matchedArr.length - 1; i >= 0; i--) {
-                            emphasizedContents = replaceWord(emphasizedContents, boldName.length, matchedArr[i].index, replacementName);
-                        }
-                        let boldFirstName = dreamPeopleArr[i][0].split(' ')[0]
-                        let replacementFirstName = dreamPeopleArr[i][1].split(' ')[0];
-                        let matchedArr2 = matchWord(emphasizedContents, boldFirstName)
-                        for (let i = matchedArr2.length - 1; i >= 0; i--) {
-                            emphasizedContents = replaceWord(emphasizedContents, boldFirstName.length, matchedArr2[i].index, replacementFirstName);
-                        }
-                    }
-                    dreamContents = emphasizedContents
-                }
+                const filteredDream = filterDream(this.state.dream)
+                dreamTitle = filteredDream.dreamTitle;
+                dreamDate = filteredDream.dreamDate;
+                dreamContents = filteredDream.dreamContents;
+                dreamPeople = filteredDream.dreamPeople;
+                dreamPeopleArr = filteredDream.dreamPeopleArr;
             }
             else {
                 console.log('other ran')

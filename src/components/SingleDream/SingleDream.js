@@ -7,11 +7,11 @@ import { matchWord, replaceWord, filterDream } from '../../utility/utility';
 
 class SingleDream extends Component {
     state = {
-        dream: {
-            title: '',
-            peopleArr: [],
-            contents: ''
-        },
+        // dream: {
+        //     title: '',
+        //     peopleArr: [],
+        //     contents: ''
+        // },
         owner: false
     }
 
@@ -113,7 +113,8 @@ class SingleDream extends Component {
                 <p>{dreamContents}</p>
             </div>
             :
-            <h1>Dream not found</h1>
+            // <h1>Dream not found</h1>
+            ''
 
         return (
             <div>

@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import faker from 'faker';
 
 import './SingleDream.css';
-import { matchWord, replaceWord, filterDream } from '../../utility/utility';
+import { anonymizeDream } from '../../utility/utility';
 
 class SingleDream extends Component {
     state = {
-        // dream: {
-        //     title: '',
-        //     peopleArr: [],
-        //     contents: ''
-        // },
         owner: false
     }
 
@@ -41,7 +35,7 @@ class SingleDream extends Component {
     checkOwnership = (dreamArr, isOwnedDream) => {
         if (dreamArr.length) {
             let dreamIndex = Object.keys(dreamArr).find(key => dreamArr[key].dreamKey === this.props.match.params.dreamId)
-            console.log(dreamIndex)
+            // console.log(dreamIndex)
             if (dreamIndex) {
                 if (isOwnedDream) {
                     console.log('owner')
@@ -63,25 +57,25 @@ class SingleDream extends Component {
 
 
     render() {
-        console.log(this.state)
-        console.log(this.props.auth)
+        // console.log(this.state)
+        // console.log(this.props.auth)
         let dreamTitle = 'Untitled'
         let dreamDate = 'No date'
         let dreamContents = 'No Contents'
         let dreamPeople = 'none';
-        let dreamPeopleArr = [];
+        // let dreamPeopleArr = [];
 
         if (this.state.dream) {
             if (!this.state.owner) {
-                const filteredDream = filterDream(this.state.dream)
-                dreamTitle = filteredDream.dreamTitle;
-                dreamDate = filteredDream.dreamDate;
-                dreamContents = filteredDream.dreamContents;
-                dreamPeople = filteredDream.dreamPeople;
-                dreamPeopleArr = filteredDream.dreamPeopleArr;
+                const filteredDream = anonymizeDream(this.state.dream)
+                dreamTitle = filteredDream.title;
+                dreamDate = filteredDream.date;
+                dreamContents = filteredDream.contents;
+                dreamPeople = filteredDream.people;
+                // dreamPeopleArr = filteredDream.dreamPeopleArr;
             }
             else {
-                console.log('other ran')
+                // console.log('other ran')
                 if (this.state.dream.peopleArr) {
                     dreamPeople = this.state.dream.peopleArr.filter(person => person).join(', ');
                     // console.log(dreamPeople)

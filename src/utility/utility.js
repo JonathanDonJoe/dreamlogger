@@ -17,43 +17,33 @@ function replaceWord(str, replaceLen, index, word) {
     return newStr
 }
 
-function filterDream(dream) {
-    let dreamTitle = 'Untitled'
-    let dreamDate = 'No date'
-    let dreamContents = 'No Contents'
-    let dreamPeople = 'none';
-    let dreamPeopleArr = [];
+function anonymizeDream(dream) {
+    let title = dream.title ? dream.title : 'Untitled'
+    let date = dream.date ? '' : 'No date'
+    let peopleArr = dream.peopleArr ? dream.peopleArr.filter(person => person).map(person => [person, faker.name.findName()]) : [];
+    let people = dream.peopleArr ?  peopleArr.map(personArr => personArr[1]).join(', ') : 'none';
+    let contents = 'No Contents'
+    
 
-    if (dream.date) {
-        dreamDate = ''
-    }
-
-    if (dream.title) {
-        dreamTitle = dream.title;
-    }
-    if (dream.peopleArr) {
-        dreamPeopleArr = dream.peopleArr.filter(person => person).map(person => [person, faker.name.findName()])
-        dreamPeople = dreamPeopleArr.map(personArr => personArr[1]).join(', ');
-    }
     if (dream.contents) {
         // This does a 1:1 replacement.  It does not replace partial names
         let emphasizedContents = dream.contents;
-        for (let i = 0; i < dreamPeopleArr.length; i++) {
-            let boldName = dreamPeopleArr[i][0];
-            let replacementName = dreamPeopleArr[i][1];
+        for (let i = 0; i < peopleArr.length; i++) {
+            let boldName = peopleArr[i][0];
+            let replacementName = peopleArr[i][1];
             let matchedArr = matchWord(emphasizedContents, boldName)
             for (let i = matchedArr.length - 1; i >= 0; i--) {
                 emphasizedContents = replaceWord(emphasizedContents, boldName.length, matchedArr[i].index, replacementName);
             }
-            let boldFirstName = dreamPeopleArr[i][0].split(' ')[0]
-            let replacementFirstName = dreamPeopleArr[i][1].split(' ')[0];
+            let boldFirstName = peopleArr[i][0].split(' ')[0]
+            let replacementFirstName = peopleArr[i][1].split(' ')[0];
             let matchedArr2 = matchWord(emphasizedContents, boldFirstName)
             for (let i = matchedArr2.length - 1; i >= 0; i--) {
                 emphasizedContents = replaceWord(emphasizedContents, boldFirstName.length, matchedArr2[i].index, replacementFirstName);
             }
         }
-        dreamContents = emphasizedContents
+        contents = emphasizedContents
     }
-    return {dreamTitle, dreamDate, dreamContents, dreamPeople, dreamPeopleArr}
+    return {title, date, contents, people}
 }
-module.exports = { matchWord, replaceWord, filterDream }
+module.exports = { matchWord, replaceWord, anonymizeDream }
